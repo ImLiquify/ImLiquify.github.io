@@ -333,3 +333,50 @@ footer {
     align-items: center;
   }
 }
+
+/* ─── EDUCATION & CERTIFICATIONS ─── */
+.edu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.edu-item {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 1.5rem;
+  padding: 1.8rem 0;
+  border-bottom: 1px solid #f0ede8;
+}
+
+.edu-item:last-child {
+  border-bottom: none;
+}
+
+.edu-meta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #b0856a;
+  padding-top: 0.2rem;
+}
+
+.edu-body h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  color: #1a1a1a;
+}
+
+.edu-body p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.edu-note {
+  margin-top: 0.3rem;
+  font-size: 0.82rem !important;
+  color: #999 !important;
+}
