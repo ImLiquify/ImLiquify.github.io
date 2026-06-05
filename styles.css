@@ -467,12 +467,20 @@ footer {
     gap: 2rem;
   }
 
-  .project-alt,
-  .project-alt.reverse {
-    grid-template-columns: 1fr;
-    direction: ltr;
-  }
+  /* ─── CENTER TEXT when no image ─── */
+.project-alt:has(.no-img) {
+  grid-template-columns: 1fr;
+}
 
+.project-alt:has(.no-img) .project-alt-img {
+  display: none;
+}
+
+.project-alt:has(.no-img) .project-alt-body {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
   .project-alt-img {
     height: 240px;
   }
