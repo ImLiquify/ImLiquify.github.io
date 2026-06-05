@@ -478,11 +478,11 @@ footer {
   }
 
   .sticky-photo {
-    width: 170px;
+    width: 270px;
   }
 
   .sticky-photo img {
-    height: 115px;
+    height: 215px;
   }
 
   .sticky-photo.tilted {
