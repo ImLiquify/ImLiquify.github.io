@@ -340,5 +340,29 @@
     <p>© 2026 Mohamed Kaiser · Built with HTML & CSS</p>
   </footer>
 
+  <script>
+  document.querySelectorAll('.project-alt-img').forEach(function(container) {
+    container.addEventListener('click', function(e) {
+      const clicked = e.target.closest('.sticky-photo');
+      if (!clicked) return;
+
+      const straight = container.querySelector('.sticky-photo.straight');
+      const tilted   = container.querySelector('.sticky-photo.tilted');
+
+      if (clicked.classList.contains('tilted')) {
+        straight.style.zIndex = '1';
+        tilted.style.zIndex   = '3';
+        tilted.style.transform  = 'rotate(-2deg)';
+        straight.style.transform = 'rotate(4.5deg)';
+      } else {
+        straight.style.zIndex = '2';
+        tilted.style.zIndex   = '1';
+        straight.style.transform = 'rotate(-2deg)';
+        tilted.style.transform   = 'rotate(4.5deg)';
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
