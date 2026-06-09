@@ -213,19 +213,21 @@
   document.getElementById('c-linkedin').href = settings.linkedin;
   document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
 
-  // ── RENDER MAIN GRID ──
+  // ── RENDER MAIN FEED GRID (ALIGNMENT BALANCED) ──
   const projects = getData('projects', DEFAULT_PROJECTS);
   const grid = document.getElementById('product-grid');
   grid.innerHTML = projects.map((p, index) => {
     const hasImg = p.img && p.img.trim();
     const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+    
+    // Always render structural wrapper box so text alignments remain uniform
     const imgHtml = hasImg
       ? `<div class="product-img"><img src="images/${p.img}" alt="${p.title}" /><div class="product-overlay"></div></div>`
-      : `<div class="product-img no-photo"><span>${getEmoji(p.tags)}</span></div>`;
+      : `<div class="product-img-placeholder"></div>`;
 
     return `
       <div class="product-card" data-index="${index}" onclick="handleCardClick(${p.id})">
-        ${hasImg ? imgHtml : ''}
+        ${imgHtml}
         <div class="product-info">
           <div class="product-meta">${p.date}</div>
           <h3>${p.title}</h3>
@@ -275,7 +277,7 @@
     openPopup(p);
   }
 
-  // ── POPUP CAROUSEL ENGINE ──
+  // ── POPUP INSTAGRAM CAROUSEL ENGINE ──
   function openPopup(p) {
     document.getElementById('popup-meta').textContent = p.date;
     document.getElementById('popup-title').textContent = p.title;
@@ -294,7 +296,6 @@
     if (p.imgs && p.imgs.length) {
       carouselContainer.style.display = 'block';
       
-      // Hide arrows if there is only 1 image available
       if (p.imgs.length <= 1) {
         prevArrow.style.display = 'none';
         nextArrow.style.display = 'none';
@@ -330,14 +331,10 @@
     document.body.style.overflow = 'hidden';
   }
 
-  // Click handler to move carousel left/right using the arrows
   function moveCarousel(direction) {
     const imgsDiv = document.getElementById('popup-imgs');
     const itemWidth = imgsDiv.clientWidth;
-    imgsDiv.scrollBy({
-      left: direction * itemWidth,
-      behavior: 'smooth'
-    });
+    imgsDiv.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
   }
 
   function closePopup(e) { if (e.target === document.getElementById('popup-overlay')) closePopupDirect(); }
