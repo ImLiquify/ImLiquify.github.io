@@ -512,3 +512,108 @@ footer {
     gap: 1rem;
   }
 }
+
+/* ─── HERO SOCIALS ─── */
+.hero-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.8rem;
+  align-items: center;
+}
+
+.hero-socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e0dbd4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #555;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.hero-socials a:hover {
+  background: #1a1a1a;
+  color: #fff;
+  border-color: #1a1a1a;
+  transform: translateY(-2px);
+}
+
+/* ─── NO IMAGE CARD (text only, centered) ─── */
+.no-img-card {
+  position: relative;
+  justify-content: center;
+  min-height: 200px;
+  background: #faf9f7;
+  border: 1px dashed #ddd;
+}
+
+.no-img-card .product-info {
+  padding: 2rem 1.5rem 3.5rem;
+}
+
+.no-img-badge {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.2rem;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: #b0856a;
+}
+
+.no-img-card:hover {
+  border-color: #b0856a;
+  background: #fff;
+}
+
+/* ─── CONTACT ICONS ─── */
+.contact-icons {
+  display: flex;
+  gap: 2.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
+.contact-icon-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  color: #555;
+  transition: color 0.2s, transform 0.2s;
+  text-decoration: none;
+}
+
+.contact-icon-item:hover {
+  color: #1a1a1a;
+  transform: translateY(-3px);
+}
+
+.contact-icon-circle {
+  width: 56px;
+  height: 56px;
+  border: 1px solid #e0dbd4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.contact-icon-item:hover .contact-icon-circle {
+  background: #1a1a1a;
+  border-color: #1a1a1a;
+  color: #fff;
+}
+
+.contact-icon-item span {
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
