@@ -155,6 +155,9 @@
       <button class="popup-close" onclick="closePopupDirect()">×</button>
       
       <div class="popup-carousel-container" id="popup-carousel-container">
+        <button class="carousel-arrow prev" id="carousel-arrow-prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-arrow next" id="carousel-arrow-next" onclick="moveCarousel(1)">&#10095;</button>
+        
         <div class="popup-imgs" id="popup-imgs"></div>
         <div class="popup-img-dots" id="popup-img-dots"></div>
       </div>
@@ -185,7 +188,7 @@
 
   function getData(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
 
-  // ── INIT CORES ──
+  // ── INIT ELEMENTS ──
   const hero = getData('hero', DEFAULT_HERO);
   document.getElementById('hero-name').textContent = hero.name;
   document.getElementById('hero-tag').textContent = hero.tag;
@@ -210,7 +213,7 @@
   document.getElementById('c-linkedin').href = settings.linkedin;
   document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
 
-  // ── RENDER FEED GRID ──
+  // ── RENDER MAIN GRID ──
   const projects = getData('projects', DEFAULT_PROJECTS);
   const grid = document.getElementById('product-grid');
   grid.innerHTML = projects.map((p, index) => {
@@ -272,7 +275,7 @@
     openPopup(p);
   }
 
-  // ── INSTAGRAM-STYLE CAROUSEL ENGINE ──
+  // ── POPUP CAROUSEL ENGINE ──
   function openPopup(p) {
     document.getElementById('popup-meta').textContent = p.date;
     document.getElementById('popup-title').textContent = p.title;
@@ -285,9 +288,21 @@
     const imgsDiv = document.getElementById('popup-imgs');
     const imgDotsDiv = document.getElementById('popup-img-dots');
     const carouselContainer = document.getElementById('popup-carousel-container');
+    const prevArrow = document.getElementById('carousel-arrow-prev');
+    const nextArrow = document.getElementById('carousel-arrow-next');
 
     if (p.imgs && p.imgs.length) {
       carouselContainer.style.display = 'block';
+      
+      // Hide arrows if there is only 1 image available
+      if (p.imgs.length <= 1) {
+        prevArrow.style.display = 'none';
+        nextArrow.style.display = 'none';
+      } else {
+        prevArrow.style.display = 'flex';
+        nextArrow.style.display = 'flex';
+      }
+
       imgsDiv.innerHTML = p.imgs.map(img => `
         <div class="popup-carousel-item">
           <img src="images/${img}" alt="${p.title}" />
@@ -313,6 +328,16 @@
 
     document.getElementById('popup-overlay').classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+
+  // Click handler to move carousel left/right using the arrows
+  function moveCarousel(direction) {
+    const imgsDiv = document.getElementById('popup-imgs');
+    const itemWidth = imgsDiv.clientWidth;
+    imgsDiv.scrollBy({
+      left: direction * itemWidth,
+      behavior: 'smooth'
+    });
   }
 
   function closePopup(e) { if (e.target === document.getElementById('popup-overlay')) closePopupDirect(); }
