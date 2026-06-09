@@ -521,21 +521,25 @@ footer {
   background: #fff; border-radius: 10px;
   width: 100%; max-width: 620px; max-height: 90vh;
   overflow-y: auto; position: relative;
+  border: 1px solid #e0dbd4;
 }
 
+/* Carousel close button styled to stand out over white canvas backgrounds */
 .popup-close {
   position: absolute; top: 1rem; right: 1.2rem;
-  background: none; border: none; font-size: 1.8rem;
-  cursor: pointer; color: #fff; z-index: 30; line-height: 1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  background: rgba(255, 255, 255, 0.85); border: none; font-size: 1.5rem;
+  cursor: pointer; color: #1a1a1a; z-index: 40; line-height: 1;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
 }
 
-/* Container Wrapper matching Instagram frame constraints */
 .popup-carousel-container {
   position: relative;
   width: 100%;
-  background: #121212; 
+  background: #ffffff; /* UPDATED: Changed background to White */
   overflow: hidden;
+  border-bottom: 1px solid #f0ede8;
 }
 
 .popup-imgs {
@@ -560,16 +564,45 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #ffffff; /* White card layout spaces */
 }
 
 .popup-imgs img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Enforces clean ratio without distortions */
-  background: #121212;
+  object-fit: contain; /* Centers perfectly without trimming edges */
+  background: #ffffff;
 }
 
-/* Instagram Floating Pagination Indicator Bubble Dots */
+/* ─── NAVIGATION ARROWS ─── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e0dbd4;
+  border-radius: 50%;
+  color: #1a1a1a;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 30;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s, opacity 0.2s;
+}
+
+.carousel-arrow:hover {
+  background: #ffffff;
+}
+
+.carousel-arrow.prev { left: 15px; }
+.carousel-arrow.next { right: 15px; }
+
+/* Instagram Floating Pagination Indicator Bubble Dots over White background */
 .popup-img-dots {
   position: absolute;
   bottom: 15px;
@@ -578,7 +611,7 @@ footer {
   display: flex;
   gap: 6px;
   z-index: 25;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(26, 26, 26, 0.1); /* Soft contrast backdrop */
   padding: 6px 10px;
   border-radius: 20px;
 }
@@ -586,13 +619,13 @@ footer {
 .popup-img-dot {
   width: 6px;
   height: 6px;
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(26, 26, 26, 0.3);
   border-radius: 50%;
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .popup-img-dot.active {
-  background: #ffffff;
+  background: #b0856a; /* Theme colored active dot indicator */
   transform: scale(1.2);
 }
 
@@ -628,4 +661,42 @@ footer {
 @media (max-width: 680px) {
   section { padding: 3.5rem 5%; }
   nav { flex-direction: column; gap: 0.8rem; }
-  nav ul { gap: 1.2rem; flex-
+  nav ul { gap: 1.2rem; flex-wrap: wrap; justify-content: center; }
+
+  #hero { padding-top: 2.5rem; padding-bottom: 3.5rem; }
+  .hero-inner { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+  .hero-text { display: flex; flex-direction: column; align-items: center; }
+  .hero-socials { display: flex; justify-content: center; width: 100%; margin-top: 1.5rem; }
+  .hero-photo { width: 200px; height: 200px; }
+
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  /* Swipable Homepage Grid Carousel System */
+  .product-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1.2rem;
+    padding: 0.5rem 1rem 1.5rem;
+    margin-left: -5%; margin-right: -5%;
+    padding-left: 10%; padding-right: 10%;
+  }
+  .product-grid::-webkit-scrollbar { display: none; }
+  .product-card { flex: 0 0 80vw; scroll-snap-align: center; }
+  .slider-dots { display: flex; }
+
+  .edu-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.5rem 0; }
+  .edu-meta { padding-top: 0; margin-bottom: 0.2rem; }
+
+  /* Mobile Tuning for Popup Modals */
+  .popup-carousel-item { height: 290px; }
+  .popup-close { top: 0.8rem; right: 1rem; }
+  .popup-title { font-size: 1.35rem; }
+  
+  /* Make arrows slightly smaller on phones to maximize viewing frame */
+  .carousel-arrow { width: 32px; height: 32px; font-size: 0.75rem; }
+  .carousel-arrow.prev { left: 8px; }
+  .carousel-arrow.next { right: 8px; }
+}
