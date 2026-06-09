@@ -74,8 +74,12 @@
   <section id="projects">
     <div class="section-inner">
       <h2>Projects</h2>
-      <p class="section-sub">Click any project to view details</p>
-      <div class="product-grid" id="product-grid"></div>
+      <p class="section-sub">Swipe or click any project card to look through my work</p>
+      
+      <div class="slider-container">
+        <div class="product-grid" id="product-grid"></div>
+        <div class="slider-dots" id="slider-dots"></div>
+      </div>
     </div>
   </section>
 
@@ -206,7 +210,7 @@
   // ── RENDER PROJECTS ──
   const projects = getData('projects', DEFAULT_PROJECTS);
   const grid = document.getElementById('product-grid');
-  grid.innerHTML = projects.map(p => {
+  grid.innerHTML = projects.map((p, index) => {
     const hasGithub = p.github && p.github.trim();
     const hasImg = p.img && p.img.trim();
     const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
@@ -216,7 +220,7 @@
       : `<div class="product-img no-photo"><span>${getEmoji(p.tags)}</span></div>`;
 
     return `
-      <div class="product-card" onclick="handleCardClick(${p.id})" style="cursor:pointer">
+      <div class="product-card" data-index="${index}" onclick="handleCardClick(${p.id})" style="cursor:pointer">
         ${hasImg ? imgHtml : ''}
         <div class="product-info">
           <div class="product-meta">${p.date}</div>
@@ -226,6 +230,43 @@
         </div>
       </div>`;
   }).join('');
+
+  // ── GENERATE SLIDER BUBBLES ──
+  const dotsContainer = document.getElementById('slider-dots');
+  dotsContainer.innerHTML = projects.map((_, idx) => `
+    <button class="dot ${idx === 0 ? 'active' : ''}" onclick="scrollToCard(${idx})" aria-label="Go to card ${idx + 1}"></button>
+  `).join('');
+
+  function scrollToCard(idx) {
+    const cards = grid.querySelectorAll('.product-card');
+    if(cards[idx]) {
+      cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }
+
+  // Tracking swiped active card position to light up indicators
+  grid.addEventListener('scroll', () => {
+    const cards = grid.querySelectorAll('.product-card');
+    let closestIdx = 0;
+    let minDiff = Infinity;
+    const gridCenter = grid.getBoundingClientRect().left + grid.offsetWidth / 2;
+
+    cards.forEach((card, idx) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const diff = Math.abs(gridCenter - cardCenter);
+      if (diff < minDiff) {
+        minDiff = diff;
+        closestIdx = idx;
+      }
+    });
+
+    const dots = dotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, idx) => {
+      if(idx === closestIdx) dot.classList.add('active');
+      else dot.classList.remove('active');
+    });
+  });
 
   function getEmoji(tags) {
     if (tags.some(t => /java|hospital/i.test(t))) return '🏥';
