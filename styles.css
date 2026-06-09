@@ -16,6 +16,7 @@ body {
   background: #ffffff;
   line-height: 1.7;
   font-size: 16px;
+  overflow-x: hidden; /* Prevents unwanted horizontal scrolling on mobile */
 }
 
 h1, h2, h3 {
@@ -114,7 +115,7 @@ nav ul li a:hover {
 }
 
 #hero h1 {
-  font-size: clamp(2.8rem, 7vw, 5rem);
+  font-size: clamp(2.4rem, 6vw, 4.5rem); /* Tuned fluid typography to fix overlaps */
   color: #1a1a1a;
   margin-bottom: 1.2rem;
 }
@@ -175,7 +176,7 @@ section {
 }
 
 section h2 {
-  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   margin-bottom: 0.5rem;
   color: #1a1a1a;
 }
@@ -230,7 +231,7 @@ section h2 {
 /* ─── SKILLS ─── */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.5rem;
 }
 
@@ -406,7 +407,7 @@ section h2 {
 
 .edu-item {
   display: grid;
-  grid-template-columns: 140px 1fr;
+  grid-template-columns: 160px 1fr;
   gap: 1.5rem;
   padding: 1.8rem 0;
   border-bottom: 1px solid #f0ede8;
@@ -455,13 +456,6 @@ section h2 {
   margin: 0 auto 2.5rem;
 }
 
-.contact-links {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 /* ─── FOOTER ─── */
 footer {
   text-align: center;
@@ -469,48 +463,6 @@ footer {
   font-size: 0.82rem;
   color: #aaa;
   border-top: 1px solid #f0ede8;
-}
-
-/* ─── RESPONSIVE (mobile) ─── */
-@media (max-width: 900px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 680px) {
-  nav ul {
-    gap: 1.2rem;
-  }
-
-  .hero-inner {
-    flex-direction: column-reverse;
-    text-align: center;
-  }
-
-  .hero-photo {
-    width: 180px;
-    height: 180px;
-  }
-
-  .two-col {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .contact-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .edu-item {
-    grid-template-columns: 90px 1fr;
-    gap: 1rem;
-  }
 }
 
 /* ─── HERO SOCIALS ─── */
@@ -541,7 +493,7 @@ footer {
   transform: translateY(-2px);
 }
 
-/* ─── NO IMAGE CARD (text only, centered) ─── */
+/* ─── NO IMAGE CARD ─── */
 .no-img-card {
   position: relative;
   justify-content: center;
@@ -673,14 +625,113 @@ footer {
 }
 .popup-github-btn:hover { background: #333; }
 
-/* ─── NO IMG CARD ─── */
-.no-img-card {
-  background: #faf9f7;
-  border: 1px dashed #ddd !important;
+/* ─── RESPONSIVE (mobile) ─── */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
 }
-.no-img-badge {
-  font-size: 0.78rem; font-weight: 500;
-  letter-spacing: 0.05em; color: #b0856a;
-  margin-top: 0.8rem;
+
+@media (max-width: 680px) {
+  section {
+    padding: 3.5rem 6%;
+  }
+
+  /* Navigation Alignment Fixes */
+  nav {
+    flex-direction: column;
+    gap: 0.8rem;
+    padding: 1.2rem 5%;
+  }
+  
+  nav ul {
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Hero Layout Reset for Small Viewports */
+  #hero {
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-inner {
+    flex-direction: column-reverse;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers action button and items evenly */
+  }
+
+  .hero-photo {
+    width: 200px;
+    height: 200px;
+  }
+
+  .hero-sub {
+    margin-bottom: 1.8rem;
+  }
+
+  .hero-socials {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  /* Core Layout Structures Collapse */
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  /* Education Alignment Fix (Stops long dates from clipping out of rows) */
+  .edu-item {
+    grid-template-columns: 1fr;
+    gap: 0.4rem;
+    padding: 1.5rem 0;
+  }
+
+  .edu-meta {
+    padding-top: 0;
+    margin-bottom: 0.2rem;
+  }
+
+  /* Contact Items Closeness Adjustments */
+  .contact-icons {
+    gap: 1.5rem 1rem;
+  }
+  
+  .contact-icon-circle {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+  
+  /* Project Detail Modal Layout Adjustment */
+  .popup {
+    max-height: 85vh;
+  }
+  
+  .popup-content {
+    padding: 1.2rem 1.2rem 1.5rem;
+  }
+  
+  .popup-title {
+    font-size: 1.4rem;
+  }
 }
-.no-img-card:hover { border-color: #b0856a !important; background: #fff; }
