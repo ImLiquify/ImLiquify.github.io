@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hey it's Mohamed Kaiser👋 | Portfolio</title>
+  <title id="page-title">Hey it's Mohamed Kaiser👋 | Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -12,7 +12,7 @@
 
   <!-- ─── NAVIGATION ─── -->
   <nav>
-    <span class="nav-name">Mohamed Kaiser</span>
+    <span class="nav-name" id="nav-name">Mohamed Kaiser</span>
     <ul>
       <li><a href="#about">About Me!</a></li>
       <li><a href="#skills">My Skills</a></li>
@@ -25,15 +25,15 @@
   <section id="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <p class="hero-tag">Diploma in ICT · APU</p>
-        <h1>Hi, I'm <span class="accent">Mohamed Kaiser</span></h1>
-        <p class="hero-sub">ICT Student & Tech-Forward Problem Solver</p>
+        <p class="hero-tag" id="hero-tag">Diploma in ICT · APU</p>
+        <h1>Hi, I'm <span class="accent" id="hero-name">Mohamed Kaiser</span></h1>
+        <p class="hero-sub" id="hero-sub">ICT Student & Tech-Forward Problem Solver</p>
         <a href="#projects" class="btn">View My Work</a>
-        <div class="hero-socials">
-          <a href="mailto:mohdkaiser1806@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
-          <a href="https://github.com/ImLiquify" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-          <a href="https://wa.me/60178710035" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        <div class="hero-socials" id="hero-socials">
+          <a id="social-email" href="mailto:mohdkaiser1806@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a id="social-github" href="https://github.com/ImLiquify" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a id="social-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a id="social-wa" href="https://wa.me/60178710035" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="hero-photo">
@@ -47,36 +47,15 @@
     <div class="section-inner two-col">
       <div>
         <h2>About Me</h2>
-        <p>
-          I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia.
-          I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.
-        </p>
-        <p>
-          When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge.
-          I'm actively looking for internship opportunities to grow my skills.
-        </p>
+        <p id="about-p1">I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.</p>
+        <p id="about-p2">When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.</p>
       </div>
       <div class="about-details">
-        <div class="detail-item">
-          <span class="label">University</span>
-          <span>Asia Pacific University (APU)</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Programme</span>
-          <span>Diploma in ICT (General)</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">CGPA</span>
-          <span>3.44 / 4.00</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Location</span>
-          <span>Kuala Lumpur, Malaysia</span>
-        </div>
-        <div class="detail-item">
-          <span class="label">Email</span>
-          <span>mohdkaiser1806@gmail.com</span>
-        </div>
+        <div class="detail-item"><span class="label">University</span><span id="d-uni">Asia Pacific University (APU)</span></div>
+        <div class="detail-item"><span class="label">Programme</span><span id="d-prog">Diploma in ICT (General)</span></div>
+        <div class="detail-item"><span class="label">CGPA</span><span id="d-cgpa">3.44 / 4.00</span></div>
+        <div class="detail-item"><span class="label">Location</span><span id="d-loc">Kuala Lumpur, Malaysia</span></div>
+        <div class="detail-item"><span class="label">Email</span><span id="d-email">mohdkaiser1806@gmail.com</span></div>
       </div>
     </div>
   </section>
@@ -86,36 +65,12 @@
     <div class="section-inner">
       <h2>Skills</h2>
       <div class="skills-grid">
-        <div class="skill-card">
-          <span class="skill-icon">🤖</span>
-          <h3>AI-Assisted Dev</h3>
-          <p>Windsurf, Cascade, Prompt Engineering (basics)</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">🌐</span>
-          <h3>Automation & Web</h3>
-          <p>AppScript, PHP, MySQL, JavaScript, HTML, CSS</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">💻</span>
-          <h3>Programming</h3>
-          <p>Python, Java (OOP), C++, HTML5, CSS3</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">🛠️</span>
-          <h3>IoT & Hardware</h3>
-          <p>Arduino, Embedded C++, Sensor Integration</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">🏢</span>
-          <h3>Design & 3D</h3>
-          <p>SketchUp 3D, Enscape 3D, Figma</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">🔃</span>
-          <h3>More to Come</h3>
-          <p>Actively Learning...</p>
-        </div>
+        <div class="skill-card"><span class="skill-icon">🤖</span><h3>AI-Assisted Dev</h3><p>Windsurf, Cascade, Prompt Engineering (basics)</p></div>
+        <div class="skill-card"><span class="skill-icon">🌐</span><h3>Automation & Web</h3><p>AppScript, PHP, MySQL, JavaScript, HTML, CSS</p></div>
+        <div class="skill-card"><span class="skill-icon">💻</span><h3>Programming</h3><p>Python, Java (OOP), C++, HTML5, CSS3</p></div>
+        <div class="skill-card"><span class="skill-icon">🛠️</span><h3>IoT & Hardware</h3><p>Arduino, Embedded C++, Sensor Integration</p></div>
+        <div class="skill-card"><span class="skill-icon">🏢</span><h3>Design & 3D</h3><p>SketchUp 3D, Enscape 3D, Figma</p></div>
+        <div class="skill-card"><span class="skill-icon">🔃</span><h3>More to Come</h3><p>Actively Learning...</p></div>
       </div>
     </div>
   </section>
@@ -124,123 +79,8 @@
   <section id="projects">
     <div class="section-inner">
       <h2>Projects</h2>
-      <p class="section-sub">Click any project to view the repository</p>
-      <div class="product-grid">
-
-        <a class="product-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-img">
-            <img src="images/fixnflip.jpg" alt="Fix n Flip" />
-            <div class="product-overlay">View on GitHub →</div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">Jan 2026 – Present</div>
-            <h3>Fix n Flip</h3>
-            <p>E-waste marketplace for APU students to buy, sell and repair devices. Role-based access with full device lifecycle tracking.</p>
-            <div class="project-tags">
-              <span class="tag">PHP</span>
-              <span class="tag">MySQL</span>
-              <span class="tag">JavaScript</span>
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="product-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-img">
-            <img src="images/greenhouse.jpg" alt="Smart Greenhouse" />
-            <div class="product-overlay">View on GitHub →</div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">Nov 2025 – Present</div>
-            <h3>Automated Smart Greenhouse</h3>
-            <p>IoT system with Arduino & ESP32. Automates irrigation and lighting based on soil moisture and crop type.</p>
-            <div class="project-tags">
-              <span class="tag">Arduino C++</span>
-              <span class="tag">HTML</span>
-              <span class="tag">CSS</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="product-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-img">
-            <img src="images/taobao.jpg" alt="TaoBao Redesign" />
-            <div class="product-overlay">View on GitHub →</div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">Jun 2025 – Present</div>
-            <h3>Enhanced TaoBao (Figma)</h3>
-            <p>Full UI/UX redesign of TaoBao's e-commerce platform. Cleaner layout, better hierarchy, focused on converting buyers.</p>
-            <div class="project-tags">
-              <span class="tag">Figma</span>
-              <span class="tag">UI/UX</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="product-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-img no-photo">
-            <span>🏥</span>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">Jul 2025 – Present</div>
-            <h3>Hospital Management System</h3>
-            <p>Desktop app in Java OOP to manage Nurses, Doctors and Patients. Implements encapsulation, inheritance and login access control.</p>
-            <div class="project-tags">
-              <span class="tag">Java OOP</span>
-              <span class="tag">NetBeans</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="product-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-img">
-            <img src="images/restaurant.jpg" alt="Restaurant Automation" />
-            <div class="product-overlay">View on GitHub →</div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">2024 – 2025</div>
-            <h3>Restaurant Market List Automation</h3>
-            <p>Google Sheets tracker for my family's restaurant with AppScript automations — monthly archiving and auto year-end email reports.</p>
-            <div class="project-tags">
-              <span class="tag">Google Sheets</span>
-              <span class="tag">AppScript</span>
-              <span class="tag">JavaScript</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="product-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-img">
-            <img src="images/restaurant3d.jpg" alt="3D Restaurant Design" />
-            <div class="product-overlay">View on GitHub →</div>
-          </div>
-          <div class="product-info">
-            <div class="product-meta">2025</div>
-            <h3>3D Restaurant Architectural Design</h3>
-            <p>Full spatial layout and interior design of my parents' restaurant using SketchUp 3D with photorealistic Enscape renders.</p>
-            <div class="project-tags">
-              <span class="tag">SketchUp 3D</span>
-              <span class="tag">Enscape</span>
-            </div>
-          </div>
-        </a>
-
-        <a class="product-card no-img-card" href="https://github.com/ImLiquify" target="_blank">
-          <div class="product-info">
-            <div class="product-meta">2019 – 2022</div>
-            <h3>Shell STEM Innovation Challenges</h3>
-            <p>Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car and Irrigation Pump Controller.</p>
-            <div class="project-tags">
-              <span class="tag">Arduino C++</span>
-              <span class="tag">Hardware</span>
-            </div>
-          </div>
-          <div class="no-img-badge">View on GitHub →</div>
-        </a>
-
-      </div>
+      <p class="section-sub">Click any project to view details or GitHub</p>
+      <div class="product-grid" id="product-grid"></div>
     </div>
   </section>
 
@@ -249,7 +89,6 @@
     <div class="section-inner">
       <h2>Education</h2>
       <div class="edu-list">
-
         <div class="edu-item">
           <div class="edu-meta">2024 – Nov 2026</div>
           <div class="edu-body">
@@ -258,7 +97,6 @@
             <p class="edu-note">CGPA: 3.44 / 4.00 · A+ in AI, Mathematics, Operating Systems, Algebra</p>
           </div>
         </div>
-
         <div class="edu-item">
           <div class="edu-meta">2023</div>
           <div class="edu-body">
@@ -267,7 +105,6 @@
             <p class="edu-note">CEFR C1 English Proficiency · Score: 193</p>
           </div>
         </div>
-
         <div class="edu-item">
           <div class="edu-meta">2024</div>
           <div class="edu-body">
@@ -275,7 +112,6 @@
             <p>Distinction · Score: 193</p>
           </div>
         </div>
-
       </div>
     </div>
   </section>
@@ -285,31 +121,9 @@
     <div class="section-inner">
       <h2>Certifications</h2>
       <div class="edu-list">
-
-        <div class="edu-item">
-          <div class="edu-meta">Dell</div>
-          <div class="edu-body">
-            <h3>DELL Tech Talk: LLMs & Machine Learning</h3>
-            <p>Dell Technologies</p>
-          </div>
-        </div>
-
-        <div class="edu-item">
-          <div class="edu-meta">APU</div>
-          <div class="edu-body">
-            <h3>Smart & Adaptive AI Agents at the Edge</h3>
-            <p>Asia Pacific University</p>
-          </div>
-        </div>
-
-        <div class="edu-item">
-          <div class="edu-meta">UM</div>
-          <div class="edu-body">
-            <h3>Practical AI Workshop</h3>
-            <p>UM Startup Ecosystem</p>
-          </div>
-        </div>
-
+        <div class="edu-item"><div class="edu-meta">Dell</div><div class="edu-body"><h3>DELL Tech Talk: LLMs & Machine Learning</h3><p>Dell Technologies</p></div></div>
+        <div class="edu-item"><div class="edu-meta">APU</div><div class="edu-body"><h3>Smart & Adaptive AI Agents at the Edge</h3><p>Asia Pacific University</p></div></div>
+        <div class="edu-item"><div class="edu-meta">UM</div><div class="edu-body"><h3>Practical AI Workshop</h3><p>UM Startup Ecosystem</p></div></div>
       </div>
     </div>
   </section>
@@ -319,30 +133,18 @@
     <div class="section-inner contact-inner">
       <h2>Get In Touch</h2>
       <p>I'm open to Internship Opportunities and Collaboration.</p>
-      <div class="contact-icons">
-        <a href="mailto:mohdkaiser1806@gmail.com" class="contact-icon-item" title="Email">
-          <div class="contact-icon-circle">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <span>Email</span>
+      <div class="contact-icons" id="contact-icons">
+        <a id="c-email" href="mailto:mohdkaiser1806@gmail.com" class="contact-icon-item" title="Email">
+          <div class="contact-icon-circle"><i class="fas fa-envelope"></i></div><span>Email</span>
         </a>
-        <a href="https://github.com/ImLiquify" target="_blank" class="contact-icon-item" title="GitHub">
-          <div class="contact-icon-circle">
-            <i class="fab fa-github"></i>
-          </div>
-          <span>GitHub</span>
+        <a id="c-github" href="https://github.com/ImLiquify" target="_blank" class="contact-icon-item" title="GitHub">
+          <div class="contact-icon-circle"><i class="fab fa-github"></i></div><span>GitHub</span>
         </a>
-        <a href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" class="contact-icon-item" title="LinkedIn">
-          <div class="contact-icon-circle">
-            <i class="fab fa-linkedin"></i>
-          </div>
-          <span>LinkedIn</span>
+        <a id="c-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" class="contact-icon-item" title="LinkedIn">
+          <div class="contact-icon-circle"><i class="fab fa-linkedin"></i></div><span>LinkedIn</span>
         </a>
-        <a href="https://wa.me/60178710035" target="_blank" class="contact-icon-item" title="WhatsApp">
-          <div class="contact-icon-circle">
-            <i class="fab fa-whatsapp"></i>
-          </div>
-          <span>WhatsApp</span>
+        <a id="c-wa" href="https://wa.me/60178710035" target="_blank" class="contact-icon-item" title="WhatsApp">
+          <div class="contact-icon-circle"><i class="fab fa-whatsapp"></i></div><span>WhatsApp</span>
         </a>
       </div>
     </div>
@@ -350,8 +152,140 @@
 
   <!-- ─── FOOTER ─── -->
   <footer>
-    <p>© 2026 Mohamed Kaiser · Built with HTML & CSS</p>
+    <p>© 2026 <span id="footer-name">Mohamed Kaiser</span> · Built with HTML & CSS</p>
   </footer>
+
+  <!-- ─── PROJECT POPUP MODAL ─── -->
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup(event)">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopupDirect()">×</button>
+      <div class="popup-imgs" id="popup-imgs"></div>
+      <div class="popup-content">
+        <div class="popup-meta" id="popup-meta"></div>
+        <h2 class="popup-title" id="popup-title"></h2>
+        <p class="popup-desc" id="popup-desc"></p>
+        <div class="project-tags" id="popup-tags"></div>
+        <a class="popup-github-btn" id="popup-github-btn" href="#" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // ── DEFAULTS ──
+  const DEFAULT_PROJECTS = [
+    { id:1, title:'Fix n Flip', date:'Jan 2026 – Present', short:'E-waste marketplace for APU students to buy, sell and repair devices. Role-based access with full lifecycle tracking.', long:'Led my team to build a website for APU students to buy and sell devices at lower prices. Includes role-based access for Admins, Technicians, Clerks, and Users with full device lifecycle tracking. Built a 31-table relational database and 15+ dynamic pages.', tags:['PHP','MySQL','JavaScript','HTML','CSS'], github:'https://github.com/ImLiquify', img:'fixnflip.jpg', imgs:['fixnflip.jpg','fixnflip2.jpg'] },
+    { id:2, title:'Automated Smart Greenhouse', date:'Nov 2025 – Present', short:'IoT system with Arduino & ESP32. Automates irrigation and lighting based on soil and crop type.', long:'Built an IoT monitoring system using Arduino and ESP32 with a web dashboard. Automates irrigation based on soil moisture and adjusts LED lighting by crop type. Includes water pump burn-out prevention.', tags:['Arduino C++','HTML','CSS'], github:'https://github.com/ImLiquify', img:'greenhouse.jpg', imgs:['greenhouse.jpg','greenhouse2.jpg'] },
+    { id:3, title:'Enhanced TaoBao (Figma)', date:'Jun 2025 – Present', short:'Full UI/UX redesign of TaoBao. Cleaner layout, better hierarchy, focused on converting buyers.', long:'Conducted user research, competitor analysis, and information architecture. Designed user flows and multiple high and low fidelity mockups. Developed a complete advanced website prototype in Figma focused on reducing clutter and improving purchasing conversion.', tags:['Figma','UI/UX'], github:'', img:'taobao.jpg', imgs:['taobao.jpg','taobao2.jpg'] },
+    { id:4, title:'Hospital Management System', date:'Jul 2025 – Present', short:'Desktop app in Java OOP to manage Nurses, Doctors and Patients with login access control.', long:'Built a desktop app using NetBeans UI to demonstrate core OOP principles. Implemented Admin features and login functions. Applies Encapsulation, Inheritance, and modular structure.', tags:['Java OOP','NetBeans'], github:'', img:'', imgs:[] },
+    { id:5, title:'Restaurant Market List Automation', date:'2024 – 2025', short:"Google Sheets tracker for my family's restaurant with AppScript automations and auto email reports.", long:"Built a shared Google Sheets procurement tracker for my family's restaurant. AppScript automations run monthly: archiving data, auto-generating fresh sheets, and sending a year-end summary email to the owner.", tags:['Google Sheets','AppScript','JavaScript'], github:'', img:'restaurant.jpg', imgs:['restaurant.jpg','restaurant2.jpg'] },
+    { id:6, title:'3D Restaurant Architectural Design', date:'2025', short:"Full spatial layout and interior design using SketchUp 3D with photorealistic Enscape renders.", long:"Designed the full spatial layout and interior of my parents' restaurant pre-renovation using SketchUp 3D. Produced photorealistic renders and walkthroughs using Enscape for review before construction.", tags:['SketchUp 3D','Enscape'], github:'', img:'restaurant3d.jpg', imgs:['restaurant3d.jpg','restaurant3d2.jpg'] },
+    { id:7, title:'Shell STEM Innovation Challenges', date:'2019 – 2022', short:'Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car.', long:'Led student teams across two years of national STEM competitions. Built four hardware systems: a Salt-Water Electrolysis Electric Car, an Automated Pool Energy Recovery System, a Guard Sleep-Monitoring Alert, and an Automatic Overflow & Irrigation Pump Controller.', tags:['Arduino C++','Hardware'], github:'', img:'', imgs:[] }
+  ];
+
+  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'Kuala Lumpur, Malaysia', email:'mohdkaiser1806@gmail.com' };
+  const DEFAULT_SETTINGS = { email:'mohdkaiser1806@gmail.com', github:'https://github.com/ImLiquify', linkedin:'https://www.linkedin.com/in/mohamed-kaiser-04093532b/', wa:'60178710035' };
+
+  function getData(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
+
+  // ── LOAD HERO ──
+  const hero = getData('hero', DEFAULT_HERO);
+  document.getElementById('hero-name').textContent = hero.name;
+  document.getElementById('hero-tag').textContent = hero.tag;
+  document.getElementById('hero-sub').textContent = hero.sub;
+  document.getElementById('nav-name').textContent = hero.name;
+  document.getElementById('footer-name').textContent = hero.name;
+  document.getElementById('about-p1').textContent = hero.about1;
+  document.getElementById('about-p2').textContent = hero.about2;
+  document.getElementById('d-uni').textContent = hero.uni;
+  document.getElementById('d-prog').textContent = hero.prog;
+  document.getElementById('d-cgpa').textContent = hero.cgpa;
+  document.getElementById('d-loc').textContent = hero.loc;
+  document.getElementById('d-email').textContent = hero.email;
+
+  // ── LOAD SETTINGS ──
+  const settings = getData('settings', DEFAULT_SETTINGS);
+  document.getElementById('social-email').href = 'mailto:' + settings.email;
+  document.getElementById('social-github').href = settings.github;
+  document.getElementById('social-linkedin').href = settings.linkedin;
+  document.getElementById('social-wa').href = 'https://wa.me/' + settings.wa;
+  document.getElementById('c-email').href = 'mailto:' + settings.email;
+  document.getElementById('c-github').href = settings.github;
+  document.getElementById('c-linkedin').href = settings.linkedin;
+  document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
+
+  // ── RENDER PROJECTS ──
+  const projects = getData('projects', DEFAULT_PROJECTS);
+  const grid = document.getElementById('product-grid');
+  grid.innerHTML = projects.map(p => {
+    const hasGithub = p.github && p.github.trim();
+    const hasImg = p.img && p.img.trim();
+    const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    const imgHtml = hasImg
+      ? `<div class="product-img"><img src="images/${p.img}" alt="${p.title}" /><div class="product-overlay">${hasGithub ? 'View on GitHub →' : 'View Details →'}</div></div>`
+      : `<div class="product-img no-photo"><span>${getEmoji(p.tags)}</span></div>`;
+
+    return `
+      <div class="product-card" onclick="handleCardClick(${p.id})" style="cursor:pointer">
+        ${hasImg ? imgHtml : ''}
+        <div class="product-info">
+          <div class="product-meta">${p.date}</div>
+          <h3>${p.title}</h3>
+          <p>${p.short}</p>
+          <div class="project-tags">${tags}</div>
+          ${!hasImg ? `<div class="no-img-badge">${hasGithub ? 'View on GitHub →' : 'View Details →'}</div>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+
+  function getEmoji(tags) {
+    if (tags.some(t => /java|hospital/i.test(t))) return '🏥';
+    if (tags.some(t => /arduino|iot|hardware/i.test(t))) return '🔧';
+    if (tags.some(t => /figma|design/i.test(t))) return '🎨';
+    if (tags.some(t => /sheets|script/i.test(t))) return '📊';
+    return '📁';
+  }
+
+  function handleCardClick(id) {
+    const p = projects.find(x => x.id === id);
+    if (!p) return;
+    if (p.github && !p.imgs.length) { window.open(p.github, '_blank'); return; }
+    openPopup(p);
+  }
+
+  // ── POPUP ──
+  function openPopup(p) {
+    document.getElementById('popup-meta').textContent = p.date;
+    document.getElementById('popup-title').textContent = p.title;
+    document.getElementById('popup-desc').textContent = p.long || p.short;
+    document.getElementById('popup-tags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    const ghBtn = document.getElementById('popup-github-btn');
+    if (p.github) { ghBtn.href = p.github; ghBtn.style.display = 'inline-block'; }
+    else { ghBtn.style.display = 'none'; }
+
+    const imgsDiv = document.getElementById('popup-imgs');
+    if (p.imgs && p.imgs.length) {
+      imgsDiv.style.display = 'flex';
+      imgsDiv.innerHTML = p.imgs.map(img => `<img src="images/${img}" alt="${p.title}" />`).join('');
+    } else {
+      imgsDiv.style.display = 'none';
+      imgsDiv.innerHTML = '';
+    }
+
+    document.getElementById('popup-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closePopup(e) {
+    if (e.target === document.getElementById('popup-overlay')) closePopupDirect();
+  }
+  function closePopupDirect() {
+    document.getElementById('popup-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopupDirect(); });
+</script>
 
 </body>
 </html>
