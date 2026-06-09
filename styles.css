@@ -16,7 +16,7 @@ body {
   background: #ffffff;
   line-height: 1.7;
   font-size: 16px;
-  overflow-x: hidden; /* Prevents unwanted horizontal scrolling on mobile */
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -115,7 +115,7 @@ nav ul li a:hover {
 }
 
 #hero h1 {
-  font-size: clamp(2.4rem, 6vw, 4.5rem); /* Tuned fluid typography to fix overlaps */
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
   color: #1a1a1a;
   margin-bottom: 1.2rem;
 }
@@ -148,17 +148,6 @@ nav ul li a:hover {
 .btn:hover {
   background: #333;
   transform: translateY(-1px);
-}
-
-.btn-outline {
-  background: transparent;
-  color: #1a1a1a;
-  border: 1px solid #1a1a1a;
-}
-
-.btn-outline:hover {
-  background: #1a1a1a;
-  color: #fff;
 }
 
 /* ─── SECTION SHARED ─── */
@@ -267,7 +256,12 @@ section h2 {
   color: #777;
 }
 
-/* ─── PRODUCT GRID (Projects) ─── */
+/* ─── PRODUCT GRID (Projects desktop view) ─── */
+.slider-container {
+  position: relative;
+  width: 100%;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -282,8 +276,6 @@ section h2 {
   overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s;
   cursor: pointer;
-  color: inherit;
-  text-decoration: none;
   background: #fff;
 }
 
@@ -293,7 +285,6 @@ section h2 {
   border-color: #ddd;
 }
 
-/* Image area */
 .product-img {
   position: relative;
   width: 100%;
@@ -307,34 +298,8 @@ section h2 {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.35s ease;
 }
 
-.product-card:hover .product-img img {
-  transform: scale(1.05);
-}
-
-/* Overlay on hover */
-.product-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 26, 26, 0.55);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  opacity: 0;
-  transition: opacity 0.25s ease;
-}
-
-.product-card:hover .product-overlay {
-  opacity: 1;
-}
-
-/* No photo fallback */
 .product-img.no-photo {
   display: flex;
   align-items: center;
@@ -347,7 +312,6 @@ section h2 {
   opacity: 0.4;
 }
 
-/* Info area */
 .product-info {
   padding: 1.2rem 1.3rem 1.4rem;
   display: flex;
@@ -398,11 +362,34 @@ section h2 {
   border-radius: 2px;
 }
 
-/* ─── EDUCATION & CERTIFICATIONS ─── */
+/* ─── BUBBLE NAVIGATION DOTS ─── */
+.slider-dots {
+  display: none; /* Hidden on desktop view */
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.slider-dots .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e0dbd4;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.slider-dots .dot.active {
+  background: #b0856a;
+  transform: scale(1.2);
+}
+
+/* ─── EDUCATION ─── */
 .edu-list {
   display: flex;
   flex-direction: column;
-  gap: 0;
 }
 
 .edu-item {
@@ -423,7 +410,6 @@ section h2 {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #b0856a;
-  padding-top: 0.2rem;
 }
 
 .edu-body h3 {
@@ -493,34 +479,6 @@ footer {
   transform: translateY(-2px);
 }
 
-/* ─── NO IMAGE CARD ─── */
-.no-img-card {
-  position: relative;
-  justify-content: center;
-  min-height: 200px;
-  background: #faf9f7;
-  border: 1px dashed #ddd;
-}
-
-.no-img-card .product-info {
-  padding: 2rem 1.5rem 3.5rem;
-}
-
-.no-img-badge {
-  position: absolute;
-  bottom: 1rem;
-  right: 1.2rem;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  color: #b0856a;
-}
-
-.no-img-card:hover {
-  border-color: #b0856a;
-  background: #fff;
-}
-
 /* ─── CONTACT ICONS ─── */
 .contact-icons {
   display: flex;
@@ -537,12 +495,6 @@ footer {
   gap: 0.6rem;
   color: #555;
   transition: color 0.2s, transform 0.2s;
-  text-decoration: none;
-}
-
-.contact-icon-item:hover {
-  color: #1a1a1a;
-  transform: translateY(-3px);
 }
 
 .contact-icon-circle {
@@ -554,7 +506,6 @@ footer {
   align-items: center;
   justify-content: center;
   font-size: 1.3rem;
-  transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .contact-icon-item:hover .contact-icon-circle {
@@ -570,7 +521,7 @@ footer {
   text-transform: uppercase;
 }
 
-/* ─── PROJECT POPUP ─── */
+/* ─── PROJECT POPUP MODAL ─── */
 .popup-overlay {
   position: fixed; inset: 0;
   background: rgba(0,0,0,0.6);
@@ -590,7 +541,6 @@ footer {
   background: none; border: none; font-size: 1.8rem;
   cursor: pointer; color: #999; z-index: 10; line-height: 1;
 }
-.popup-close:hover { color: #1a1a1a; }
 
 .popup-imgs {
   display: flex; gap: 0.5rem; overflow-x: auto;
@@ -610,7 +560,6 @@ footer {
   color: #b0856a; margin-bottom: 0.5rem;
 }
 .popup-title {
-  font-family: 'DM Serif Display', serif;
   font-size: 1.6rem; margin-bottom: 1rem; line-height: 1.2;
 }
 .popup-desc {
@@ -621,11 +570,10 @@ footer {
   display: inline-block; margin-top: 1.2rem;
   padding: 0.65rem 1.5rem; background: #1a1a1a; color: #fff;
   border-radius: 3px; font-size: 0.88rem; font-weight: 500;
-  letter-spacing: 0.04em; transition: background 0.2s;
+  letter-spacing: 0.04em;
 }
-.popup-github-btn:hover { background: #333; }
 
-/* ─── RESPONSIVE (mobile) ─── */
+/* ─── RESPONSIVE & MOBILE TIMING ─── */
 @media (max-width: 900px) {
   .product-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -635,14 +583,12 @@ footer {
 
 @media (max-width: 680px) {
   section {
-    padding: 3.5rem 6%;
+    padding: 3.5rem 5%;
   }
 
-  /* Navigation Alignment Fixes */
   nav {
     flex-direction: column;
     gap: 0.8rem;
-    padding: 1.2rem 5%;
   }
   
   nav ul {
@@ -651,10 +597,10 @@ footer {
     justify-content: center;
   }
 
-  /* Hero Layout Reset for Small Viewports */
+  /* Core Hero Block Layout Centering Fixes */
   #hero {
-    padding-top: 2rem;
-    padding-bottom: 3rem;
+    padding-top: 2.5rem;
+    padding-bottom: 3.5rem;
   }
 
   .hero-inner {
@@ -666,7 +612,14 @@ footer {
   .hero-text {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centers action button and items evenly */
+    align-items: center; /* Centers main buttons */
+  }
+
+  .hero-socials {
+    display: flex;
+    justify-content: center; /* Forces social icons to align perfectly centered */
+    width: 100%;
+    margin-top: 1.5rem;
   }
 
   .hero-photo {
@@ -674,24 +627,9 @@ footer {
     height: 200px;
   }
 
-  .hero-sub {
-    margin-bottom: 1.8rem;
-  }
-
-  .hero-socials {
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
-
-  /* Core Layout Structures Collapse */
   .two-col {
     grid-template-columns: 1fr;
     gap: 2.5rem;
-  }
-
-  .product-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
   .skills-grid {
@@ -699,7 +637,36 @@ footer {
     gap: 1rem;
   }
 
-  /* Education Alignment Fix (Stops long dates from clipping out of rows) */
+  /* ── SWIPABLE PROJECT SLIDER (PURE CSS SNAPPING) ── */
+  .product-grid {
+    display: flex; /* Converts layout to continuous row */
+    overflow-x: auto;
+    scroll-snap-type: x mandatory; /* Snap gesture requirement */
+    scroll-behavior: smooth;
+    gap: 1.2rem;
+    padding: 0.5rem 1rem 1.5rem;
+    margin-left: -5%;  /* Pull edge layout full bleed width */
+    margin-right: -5%;
+    padding-left: 10%; /* Leaves spacing to view peek layout cards */
+    padding-right: 10%;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Hiding ugly default browser scroll bars */
+  .product-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .product-card {
+    flex: 0 0 85vw; /* Fixed card width so images and text stay consistently sized */
+    scroll-snap-align: center; /* Forces the active swiped card to lock center */
+  }
+
+  /* Light up bubble container */
+  .slider-dots {
+    display: flex;
+  }
+
   .edu-item {
     grid-template-columns: 1fr;
     gap: 0.4rem;
@@ -711,26 +678,6 @@ footer {
     margin-bottom: 0.2rem;
   }
 
-  /* Contact Items Closeness Adjustments */
-  .contact-icons {
-    gap: 1.5rem 1rem;
-  }
-  
-  .contact-icon-circle {
-    width: 48px;
-    height: 48px;
-    font-size: 1.1rem;
-  }
-  
-  /* Project Detail Modal Layout Adjustment */
-  .popup {
-    max-height: 85vh;
-  }
-  
-  .popup-content {
-    padding: 1.2rem 1.2rem 1.5rem;
-  }
-  
   .popup-title {
     font-size: 1.4rem;
   }
