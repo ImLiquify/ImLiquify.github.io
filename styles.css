@@ -104,10 +104,10 @@ nav ul li a:hover {
   color: var(--text-main);
 }
 
-/* ─── THEME PROMPT BAR DESIGN (STICKY NOTE STYLE) ─── */
+/* ─── THEME PROMPT BAR DESIGN (CLICKABLE STICKY NOTE) ─── */
 .theme-prompt-bar {
   position: absolute;
-  top: 85px;
+  top: 110px; /* Shifted down to prevent overlapping the navbar line shadow */
   left: 5%;
   z-index: 10;
   background: transparent;
@@ -115,87 +115,84 @@ nav ul li a:hover {
   padding: 0;
   width: auto;
   display: block;
+  cursor: pointer; /* Makes entire box surface visibly reactable */
+  outline: none;
 }
 
 .theme-prompt-content {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  background: #fef5c1; /* Soft sticky note yellow */
-  padding: 0.4rem 1rem;
+  background: #fbf1aa; /* Darkened sticky note yellow for clear contrast readability */
+  padding: 0.5rem 1.1rem;
   border-radius: 4px;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.12);
-  transform: rotate(-1.5deg); /* Playful note angle */
-  border: 1px solid #f1e39d;
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+  box-shadow: 2px 6px 14px rgba(0, 0, 0, 0.14);
+  transform: rotate(-1.5deg);
+  border: 1px solid #e9d985;
+  transition: transform 0.2s ease, background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.2s ease;
+}
+
+.theme-prompt-bar:hover .theme-prompt-content {
+  transform: scale(1.03) rotate(-0.5deg);
+  box-shadow: 2px 8px 18px rgba(0, 0, 0, 0.18);
 }
 
 [data-theme="dark"] .theme-prompt-content {
-  background: #2d2b24; 
-  border-color: #423f33;
+  background: #333025; /* Higher contrast visibility base for dark grids */
+  border-color: #4c4735;
 }
 
 .theme-toggle-btn {
   background: transparent;
   border: none;
-  cursor: pointer;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.05rem;
-  color: #b0856a;
+  font-size: 1.1rem;
+  color: #8a5e3e; /* Darkened ink tone to ensure text contrast match */
   transition: transform 0.2s ease, color 0.2s ease;
-  -webkit-tap-highlight-color: transparent;
+  pointer-events: none; /* Passes click captures safely through to container node */
 }
 
 [data-theme="dark"] .theme-toggle-btn {
-  color: #e5b38e;
+  color: #f3cbb0;
 }
 
-.theme-toggle-btn:hover {
-  transform: scale(1.15) rotate(12deg);
+.theme-prompt-bar:hover .theme-toggle-btn {
+  transform: rotate(15deg);
 }
 
 .theme-prompt-text {
   font-family: 'Caveat', cursive;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: 0.01em;
-  color: #555555;
+  color: #3e3a24; /* Solid ink color for deep readability scores */
   user-select: none;
   white-space: nowrap;
 }
 
 [data-theme="dark"] .theme-prompt-text {
-  color: #e6e4e2;
+  color: #e9e6e0;
 }
 
-/* Cartoon Curly Arrow pointing towards the icon toggler */
+/* Authentic Hand-Drawn Curly Arrow Vector Graphic */
 .theme-arrow {
   position: relative;
-  width: 22px;
-  height: 14px;
-  border: 2px solid var(--accent-color);
-  border-top: transparent;
-  border-right: transparent;
-  border-radius: 0 0 0 14px;
-  transform: skewX(-8deg) translateY(-2px);
+  width: 24px;
+  height: 20px;
   opacity: 0.85;
   margin: 0 0.1rem;
+  background-color: #8a5e3e; /* Ink-matched color scheme */
+  /* Direct SVG vector implementation to map clean looping lines without rough jagged edges */
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17c3-5 7-7 12-4M14 13l3 3-3 3"/></svg>') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17c3-5 7-7 12-4M14 13l3 3-3 3"/></svg>') no-repeat center;
+  transition: background-color 0.3s ease;
 }
 
-.theme-arrow::before {
-  content: '';
-  position: absolute;
-  left: -2px;
-  top: -3px;
-  width: 0;
-  height: 0;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  border-bottom: 7px solid var(--accent-color);
-  transform: rotate(-45deg);
+[data-theme="dark"] .theme-arrow {
+  background-color: #f3cbb0;
 }
 
 /* ─── HERO ─── */
@@ -203,7 +200,7 @@ nav ul li a:hover {
   min-height: 85vh;
   display: flex;
   align-items: center;
-  padding: 4rem 5%;
+  padding: 5.5rem 5% 4rem; /* Top padding expanded cleanly to clear absolute sticky note layout */
 }
 
 .hero-inner {
@@ -722,117 +719,4 @@ footer {
   height: 6px;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
-}
-
-.popup-img-dot.active {
-  background: #fff;
-}
-
-.popup-content {
-  padding: 1.5rem;
-  overflow-y: auto;
-}
-
-.popup-meta {
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  color: var(--accent-color);
-  letter-spacing: 0.08em;
-  margin-bottom: 0.35rem;
-}
-
-.popup-title {
-  font-size: 1.3rem;
-  margin-bottom: 0.6rem;
-}
-
-.popup-desc {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 1.2rem;
-}
-
-.popup-github-btn {
-  display: inline-block;
-  margin-top: 1.2rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--accent-color);
-}
-
-.popup-github-btn:hover {
-  text-decoration: underline;
-}
-
-/* ─── RESPONSIVE & MOBILE ENGINE ─── */
-@media (max-width: 900px) {
-  .product-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-}
-
-@media (max-width: 680px) {
-  section { padding: 3.5rem 5%; }
-  
-  nav { 
-    flex-direction: column !important;
-    gap: 0.8rem;
-    padding: 1.2rem 5%; 
-    align-items: center;
-  }
-  nav ul { 
-    gap: 1.2rem; 
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .theme-prompt-bar {
-    position: relative;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
-    padding: 0.5rem 0;
-  }
-
-  #hero { padding-top: 1.5rem; padding-bottom: 3.5rem; }
-  .hero-inner { flex-direction: column-reverse; text-align: center; gap: 2rem; }
-  .hero-text { display: flex; flex-direction: column; align-items: center; }
-  .hero-socials { display: flex; justify-content: center; width: 100%; margin-top: 1.5rem; }
-  .hero-photo { width: 200px; height: 200px; }
-
-  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
-  .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
-
-  .product-grid {
-    display: flex;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    gap: 1.2rem;
-    padding: 0.5rem 1rem 1.5rem;
-    margin-left: -5%; margin-right: -5%;
-    padding-left: 10%; padding-right: 10%;
-    align-items: stretch;
-  }
-  .product-grid::-webkit-scrollbar { display: none; }
-  
-  .product-card { 
-    flex: 0 0 80vw; 
-    scroll-snap-align: center; 
-    height: auto;
-  }
-  
-  .product-img, 
-  .product-img-placeholder {
-    aspect-ratio: 16 / 10;
-  }
-  
-  .product-img-placeholder {
-    display: block;
-  }
-
-  .slider-dots { display: flex; }
 }
