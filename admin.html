@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin · Mohamed Kaiser Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -113,6 +113,17 @@
     }
     .btn-secondary:hover { border-color: #1a1a1a; color: #1a1a1a; }
 
+    /* ── EXPORT LIVE CONTROLS ── */
+    .export-box {
+      background: #e8f4f8; border: 1px solid #bce1ec; border-radius: 8px;
+      padding: 1.5rem; margin-bottom: 2rem; display: flex; 
+      align-items: center; justify-content: space-between; gap: 1.5rem;
+    }
+    .export-info h4 { color: #1a4f63; font-size: 1rem; margin-bottom: 0.25rem; font-family: 'DM Sans', sans-serif; font-weight: 500; }
+    .export-info p { color: #4f7380; font-size: 0.85rem; line-height: 1.4; }
+    .btn-export { background: #2980b9; color: #fff; border: none; padding: 0.75rem 1.4rem; border-radius: 4px; font-family: inherit; font-size: 0.9rem; cursor: pointer; font-weight: 500; transition: background 0.2s; white-space: nowrap; }
+    .btn-export:hover { background: #216a9a; }
+
     /* ── PROJECT LIST ── */
     .project-list { display: flex; flex-direction: column; gap: 1rem; }
     .project-list-item {
@@ -180,12 +191,12 @@
       .form-row, .form-row.triple { grid-template-columns: 1fr; }
       .admin-body { padding: 1rem; }
       .modal { width: 95vw; padding: 1.2rem; }
+      .export-box { flex-direction: column; align-items: stretch; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ── LOGIN ── -->
 <div id="login-screen">
   <div class="login-box">
     <h1>Admin Panel</h1>
@@ -196,7 +207,6 @@
   </div>
 </div>
 
-<!-- ── ADMIN SHELL ── -->
 <div id="admin-shell">
   <nav class="admin-nav">
     <h1>⚙️ Portfolio Admin</h1>
@@ -211,8 +221,16 @@
 
   <div class="admin-body">
 
-    <!-- PROJECTS TAB -->
     <div class="tab-pane active" id="tab-projects">
+      
+      <div class="export-box">
+        <div class="export-info">
+          <h4>🚀 Ready to push changes live?</h4>
+          <p>Click Export to download your updated data file, place it in your local folder, and commit to GitHub to automatically update your live site.</p>
+        </div>
+        <button class="btn-export" onclick="exportPortfolioData()"><i class="fas fa-file-download"></i> Export portfolio-data.json</button>
+      </div>
+
       <div class="section-title">
         Projects
         <button class="btn-primary" onclick="openAddModal()">+ Add Project</button>
@@ -220,7 +238,6 @@
       <div class="project-list" id="project-list"></div>
     </div>
 
-    <!-- HERO & ABOUT TAB -->
     <div class="tab-pane" id="tab-hero">
       <div class="section-title">Hero & About</div>
 
@@ -284,7 +301,6 @@
       <button class="btn-primary" onclick="saveHero()">Save Changes</button>
     </div>
 
-    <!-- SETTINGS TAB -->
     <div class="tab-pane" id="tab-settings">
       <div class="section-title">Settings</div>
 
@@ -314,7 +330,6 @@
   </div>
 </div>
 
-<!-- ── PROJECT MODAL ── -->
 <div class="modal-overlay" id="project-modal">
   <div class="modal">
     <div class="modal-header">
@@ -379,7 +394,6 @@
   </div>
 </div>
 
-<!-- ── TOAST ── -->
 <div class="toast" id="toast"></div>
 
 <script>
@@ -411,6 +425,21 @@
     wa: '60178710035'
   };
 
+  // ── AUTOLOAD LIVE SAVED DATA SO ADMIN SEES LATEST ──
+  async function loadExternalDataIfPresent() {
+    try {
+      const response = await fetch('portfolio-data.json');
+      if (response.ok) {
+        const data = await response.json();
+        if (data.projects && !localStorage.getItem('projects')) setData('projects', data.projects);
+        if (data.hero && !localStorage.getItem('hero')) setData('hero', data.hero);
+        if (data.settings && !localStorage.getItem('settings')) setData('settings', data.settings);
+      }
+    } catch (e) {
+      console.log("No external file found yet, using current working memory.");
+    }
+  }
+
   // ── STORAGE HELPERS ──
   function getData(key, def) {
     try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
@@ -419,10 +448,11 @@
   function setData(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
 
   // ── LOGIN ──
-  function tryLogin() {
+  async function tryLogin() {
     const pw = document.getElementById('pw-input').value;
     const stored = localStorage.getItem('admin_pw') || DEFAULT_PASSWORD;
     if (pw === stored) {
+      await loadExternalDataIfPresent();
       document.getElementById('login-screen').style.display = 'none';
       document.getElementById('admin-shell').style.display = 'block';
       initAdmin();
@@ -557,7 +587,7 @@
     saveProjects(projects);
     renderProjectList();
     closeModal();
-    toast('Project saved ✓');
+    toast('Project saved locally! Remember to export changes ✓');
   }
 
   function deleteProject(id) {
@@ -587,7 +617,7 @@
     setData('hero', h);
     document.getElementById('preview-name').textContent = h.name;
     document.getElementById('preview-sub').textContent = h.sub;
-    toast('Hero section saved ✓');
+    toast('Hero section saved locally! Remember to export changes ✓');
   }
 
   // ── SETTINGS ──
@@ -612,7 +642,25 @@
       linkedin: document.getElementById('s-linkedin').value.trim(),
       wa: document.getElementById('s-wa').value.trim()
     });
-    toast('Settings saved ✓');
+    toast('Settings saved locally! Remember to export changes ✓');
+  }
+
+  // ── NEW CORE EXPORT FUNCTION ──
+  function exportPortfolioData() {
+    const packageData = {
+      projects: getData('projects', DEFAULT_PROJECTS),
+      hero: getData('hero', DEFAULT_HERO),
+      settings: getData('settings', DEFAULT_SETTINGS)
+    };
+    
+    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(packageData, null, 2));
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.setAttribute("href", dataStr);
+    downloadAnchor.setAttribute("download", "portfolio-data.json");
+    document.body.appendChild(downloadAnchor);
+    downloadAnchor.click();
+    downloadAnchor.remove();
+    toast('Data file exported! Save to your folder & commit.');
   }
 
   // ── TOAST ──
