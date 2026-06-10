@@ -7,6 +7,79 @@
   <link rel="stylesheet" href="styles.css" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  
+  <style>
+    /* ── DARK MODE SYSTEM VARIABLES ── */
+    :root {
+      --bg-primary: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --card-bg: #ffffff;
+      --border-color: #eeeeee;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #121212;
+      --bg-light: #1e1e1e;
+      --text-main: #f5f3f0;
+      --text-muted: #b0b0b0;
+      --card-bg: #1d1d1d;
+      --border-color: #333333;
+      --nav-bg: rgba(18, 18, 18, 0.95);
+    }
+
+    /* Override structural layouts dynamically to use core CSS variables */
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    nav {
+      background: var(--nav-bg) !important;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .bg-light {
+      background-color: var(--bg-light) !important;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-card, .skill-card, .edu-item, .popup {
+      background-color: var(--card-bg) !important;
+      border: 1px solid var(--border-color);
+      color: var(--text-main) !important;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .product-info h3, .skill-card h3, .edu-body h3, .popup-content h2 {
+      color: var(--text-main) !important;
+    }
+
+    .product-meta, .product-info p, .skill-card p, .edu-meta, .edu-note, .popup-meta, .popup-desc {
+      color: var(--text-muted) !important;
+    }
+
+    /* Custom Theme Interactive Switch Button Styles */
+    .theme-toggle-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      color: var(--text-main);
+      padding: 0.5rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.3s ease, transform 0.2s ease;
+    }
+    
+    .theme-toggle-btn:hover {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
 
@@ -17,6 +90,12 @@
       <li><a href="#skills">My Skills</a></li>
       <li><a href="#projects">My Projects</a></li>
       <li><a href="#contact">Contact</a></li>
+      <!-- Dark Mode Controller Slot Toggle Anchor -->
+      <li>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle system color scheme">
+          <i class="fas fa-moon" id="theme-icon"></i>
+        </button>
+      </li>
     </ul>
   </nav>
 
@@ -173,6 +252,45 @@
   </div>
 
 <script>
+  // ── DARK MODE SYSTEM ENGINE (INITIALIZE AS EARLY AS POSSIBLE) ──
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themeIcon = document.getElementById('theme-icon');
+
+  function getInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    // Fallback to match exact system layout configuration profile
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    if (theme === 'dark') {
+      themeIcon.className = 'fas fa-sun';
+      themeIcon.style.color = '#fbc02d'; // Golden glow for sun icon
+    } else {
+      themeIcon.className = 'fas fa-moon';
+      themeIcon.style.color = '';
+    }
+  }
+
+  // Setup reactive events binding loops for theme control toggle components
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
+  // Run validation directly to prevent white flash intervals
+  applyTheme(getInitialTheme());
+
   const DEFAULT_PROJECTS = [
     { id:1, title:'Fix n Flip', date:'Jan 2026 – Present', short:'E-waste marketplace for APU students to buy, sell and repair devices. Role-based access with full lifecycle tracking.', long:'Led my team to build a website for APU students to buy and sell devices at lower prices. Includes role-based access for Admins, Technicians, Clerks, and Users with full device lifecycle tracking. Built a 31-table relational database and 15+ dynamic pages.', tags:['PHP','MySQL','JavaScript','HTML','CSS'], github:'https://github.com/ImLiquify', img:'fixnflip.jpg', imgs:['fixnflip.jpg','fixnflip2.jpg'] },
     { id:2, title:'Automated Smart Greenhouse', date:'Nov 2025 – Present', short:'IoT system with Arduino & ESP32. Automates irrigation and lighting based on soil and crop type.', long:'Built an IoT monitoring system using Arduino and ESP32 with a web dashboard. Automates irrigation based on soil moisture and adjusts LED lighting by crop type. Includes water pump burn-out prevention.', tags:['Arduino C++','HTML','CSS'], github:'https://github.com/ImLiquify', img:'greenhouse.jpg', imgs:['greenhouse.jpg','greenhouse2.jpg'] },
@@ -375,3 +493,4 @@
 </script>
 </body>
 </html>
+a
