@@ -26,7 +26,7 @@
         <i class="fas fa-moon theme-icon-element"></i>
       </div>
       <div class="theme-arrow"></div>
-      <span class="theme-prompt-text">Press this to change theme!</span>
+      <span id="theme-prompt-text" class="theme-prompt-text">View in Dark Mode?</span>
     </div>
   </div>
 
@@ -185,6 +185,7 @@
 <script>
   // ── DARK/LIGHT INTERACTIVE ENGINE ──
   const themePromptNote = document.getElementById('theme-prompt-note');
+  const themePromptText = document.getElementById('theme-prompt-text');
 
   function getInitialTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -196,13 +197,15 @@
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     
-    // Dynamic icon switching
+    // Dynamic icon and text mode text toggling
     const iconEl = document.querySelector('.theme-icon-element');
     if (iconEl) {
       if (theme === 'dark') {
         iconEl.className = 'fas fa-sun theme-icon-element';
+        themePromptText.textContent = 'View in Light Mode?';
       } else {
         iconEl.className = 'fas fa-moon theme-icon-element';
+        themePromptText.textContent = 'View in Dark Mode?';
       }
     }
   }
