@@ -183,65 +183,100 @@
     { id:7, title:'Shell STEM Innovation Challenges', date:'2019 – 2022', short:'Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car.', long:'Led student teams across two years of national STEM competitions. Built four hardware systems: a Salt-Water Electrolysis Electric Car, an Automated Pool Energy Recovery System, a Guard Sleep-Monitoring Alert, and an Automatic Overflow & Irrigation Pump Controller.', tags:['Arduino C++','Hardware'], github:'', img:'', imgs:[] }
   ];
 
-  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'Kuala Lumpur, Malaysia', email:'mohdkaiser1806@gmail.com' };
+  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'Kuala Lumpur, Malaysia', email:'mohdkaiser1806@gmail.com' };
   const DEFAULT_SETTINGS = { email:'mohdkaiser1806@gmail.com', github:'https://github.com/ImLiquify', linkedin:'https://www.linkedin.com/in/mohamed-kaiser-04093532b/', wa:'60178710035' };
 
   function getData(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
 
-  // ── INIT ELEMENTS ──
-  const hero = getData('hero', DEFAULT_HERO);
-  document.getElementById('hero-name').textContent = hero.name;
-  document.getElementById('hero-tag').textContent = hero.tag;
-  document.getElementById('hero-sub').textContent = hero.sub;
-  document.getElementById('nav-name').textContent = hero.name;
-  document.getElementById('footer-name').textContent = hero.name;
-  document.getElementById('about-p1').textContent = hero.about1;
-  document.getElementById('about-p2').textContent = hero.about2;
-  document.getElementById('d-uni').textContent = hero.uni;
-  document.getElementById('d-prog').textContent = hero.prog;
-  document.getElementById('d-cgpa').textContent = hero.cgpa;
-  document.getElementById('d-loc').textContent = hero.loc;
-  document.getElementById('d-email').textContent = hero.email;
+  // Global handle placeholder for dynamic synchronization bindings
+  window.loadedProjectsInstance = DEFAULT_PROJECTS;
 
-  const settings = getData('settings', DEFAULT_SETTINGS);
-  document.getElementById('social-email').href = 'mailto:' + settings.email;
-  document.getElementById('social-github').href = settings.github;
-  document.getElementById('social-linkedin').href = settings.linkedin;
-  document.getElementById('social-wa').href = 'https://wa.me/' + settings.wa;
-  document.getElementById('c-email').href = 'mailto:' + settings.email;
-  document.getElementById('c-github').href = settings.github;
-  document.getElementById('c-linkedin').href = settings.linkedin;
-  document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
+  // ── DYNAMIC INITIALIZATION ENGINE (ASYNC) ──
+  async function loadPortfolioEngine() {
+    let projects = DEFAULT_PROJECTS;
+    let hero = DEFAULT_HERO;
+    let settings = DEFAULT_SETTINGS;
 
-  // ── RENDER MAIN FEED GRID (ALIGNMENT BALANCED) ──
-  const projects = getData('projects', DEFAULT_PROJECTS);
+    // 1. Fetch JSON file generated via admin dashboard export link
+    try {
+      const response = await fetch('portfolio-data.json');
+      if (response.ok) {
+        const externalData = await response.json();
+        if (externalData.projects) projects = externalData.projects;
+        if (externalData.hero) hero = externalData.hero;
+        if (externalData.settings) settings = externalData.settings;
+      }
+    } catch (e) {
+      console.log("No deployed portfolio-data.json file processed yet. Running browser fallbacks.");
+    }
+
+    // 2. Override with LocalStorage configurations if modifying settings inside a local workspace environment
+    if (localStorage.getItem('hero')) hero = JSON.parse(localStorage.getItem('hero'));
+    if (localStorage.getItem('settings')) settings = JSON.parse(localStorage.getItem('settings'));
+    if (localStorage.getItem('projects')) projects = JSON.parse(localStorage.getItem('projects'));
+
+    // Save running pointer globally for modal view components references
+    window.loadedProjectsInstance = projects;
+
+    // 3. Mount text nodes elements cleanly to safe DOM IDs
+    document.getElementById('hero-name').textContent = hero.name;
+    document.getElementById('hero-tag').textContent = hero.tag;
+    document.getElementById('hero-sub').textContent = hero.sub;
+    document.getElementById('nav-name').textContent = hero.name;
+    document.getElementById('footer-name').textContent = hero.name;
+    document.getElementById('about-p1').textContent = hero.about1;
+    document.getElementById('about-p2').textContent = hero.about2;
+    document.getElementById('d-uni').textContent = hero.uni;
+    document.getElementById('d-prog').textContent = hero.prog;
+    document.getElementById('d-cgpa').textContent = hero.cgpa;
+    document.getElementById('d-loc').textContent = hero.loc;
+    document.getElementById('d-email').textContent = hero.email;
+
+    // 4. Update relative navigation anchors targets properties
+    document.getElementById('social-email').href = 'mailto:' + settings.email;
+    document.getElementById('social-github').href = settings.github;
+    document.getElementById('social-linkedin').href = settings.linkedin;
+    document.getElementById('social-wa').href = 'https://wa.me/' + settings.wa;
+    document.getElementById('c-email').href = 'mailto:' + settings.email;
+    document.getElementById('c-github').href = settings.github;
+    document.getElementById('c-linkedin').href = settings.linkedin;
+    document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
+
+    // 5. Fire view layouts builders mechanisms pipelines
+    renderGrid(projects);
+  }
+
+  // ── RENDER MAIN FEED GRID ──
+  function renderGrid(projectsData) {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = projectsData.map((p, index) => {
+      const hasImg = p.img && p.img.trim();
+      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      const imgHtml = hasImg
+        ? `<div class="product-img"><img src="images/${p.img}" alt="${p.title}" /><div class="product-overlay"></div></div>`
+        : `<div class="product-img-placeholder"></div>`;
+
+      return `
+        <div class="product-card" data-index="${index}" onclick="handleCardClick(${p.id})">
+          ${imgHtml}
+          <div class="product-info">
+            <div class="product-meta">${p.date}</div>
+            <h3>${p.title}</h3>
+            <p>${p.short}</p>
+            <div class="project-tags">${tags}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    // Reinitialize indicators layout dots markers maps references lines 
+    const dotsContainer = document.getElementById('slider-dots');
+    dotsContainer.innerHTML = projectsData.map((_, idx) => `
+      <button class="dot ${idx === 0 ? 'active' : ''}" onclick="scrollToCard(${idx})"></button>
+    `).join('');
+  }
+
   const grid = document.getElementById('product-grid');
-  grid.innerHTML = projects.map((p, index) => {
-    const hasImg = p.img && p.img.trim();
-    const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
-    
-    // Always render structural wrapper box so text alignments remain uniform
-    const imgHtml = hasImg
-      ? `<div class="product-img"><img src="images/${p.img}" alt="${p.title}" /><div class="product-overlay"></div></div>`
-      : `<div class="product-img-placeholder"></div>`;
-
-    return `
-      <div class="product-card" data-index="${index}" onclick="handleCardClick(${p.id})">
-        ${imgHtml}
-        <div class="product-info">
-          <div class="product-meta">${p.date}</div>
-          <h3>${p.title}</h3>
-          <p>${p.short}</p>
-          <div class="project-tags">${tags}</div>
-        </div>
-      </div>`;
-  }).join('');
-
-  // Main Page Sliders Dots Initializer
   const dotsContainer = document.getElementById('slider-dots');
-  dotsContainer.innerHTML = projects.map((_, idx) => `
-    <button class="dot ${idx === 0 ? 'active' : ''}" onclick="scrollToCard(${idx})"></button>
-  `).join('');
 
   function scrollToCard(idx) {
     const cards = grid.querySelectorAll('.product-card');
@@ -250,6 +285,7 @@
 
   grid.addEventListener('scroll', () => {
     const cards = grid.querySelectorAll('.product-card');
+    if(!cards.length) return;
     let closestIdx = 0; let minDiff = Infinity;
     const gridCenter = grid.getBoundingClientRect().left + grid.offsetWidth / 2;
     cards.forEach((card, idx) => {
@@ -262,18 +298,10 @@
     dots.forEach((dot, idx) => { if(idx === closestIdx) dot.classList.add('active'); else dot.classList.remove('active'); });
   });
 
-  function getEmoji(tags) {
-    if (tags.some(t => /java|hospital/i.test(t))) return '🏥';
-    if (tags.some(t => /arduino|iot|hardware/i.test(t))) return '🔧';
-    if (tags.some(t => /figma|design/i.test(t))) return '🎨';
-    if (tags.some(t => /sheets|script/i.test(t))) return '📊';
-    return '📁';
-  }
-
   function handleCardClick(id) {
-    const p = projects.find(x => x.id === id);
+    const p = window.loadedProjectsInstance.find(x => x.id === id);
     if (!p) return;
-    if (p.github && !p.imgs.length) { window.open(p.github, '_blank'); return; }
+    if (p.github && (!p.imgs || !p.imgs.length)) { window.open(p.github, '_blank'); return; }
     openPopup(p);
   }
 
@@ -317,6 +345,7 @@
       imgsDiv.scrollLeft = 0;
       imgsDiv.onscroll = () => {
         const itemWidth = imgsDiv.clientWidth;
+        if(itemWidth === 0) return;
         const activeIndex = Math.round(imgsDiv.scrollLeft / itemWidth);
         const dots = imgDotsDiv.querySelectorAll('.popup-img-dot');
         dots.forEach((dot, idx) => { if (idx === activeIndex) dot.classList.add('active'); else dot.classList.remove('active'); });
@@ -340,6 +369,9 @@
   function closePopup(e) { if (e.target === document.getElementById('popup-overlay')) closePopupDirect(); }
   function closePopupDirect() { document.getElementById('popup-overlay').classList.remove('open'); document.body.style.overflow = ''; }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopupDirect(); });
+
+  // Bootstrap structural script initialization loop execution step 
+  loadPortfolioEngine();
 </script>
 </body>
 </html>
