@@ -720,3 +720,119 @@ footer {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.4);
 }
+
+.popup-img-dot.active {
+  background: #fff;
+}
+
+.popup-content {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.popup-meta {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: var(--accent-color);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.35rem;
+}
+
+.popup-title {
+  font-size: 1.3rem;
+  margin-bottom: 0.6rem;
+}
+
+.popup-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.popup-github-btn {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--accent-color);
+}
+
+.popup-github-btn:hover {
+  text-decoration: underline;
+}
+
+/* ─── RESPONSIVE & MOBILE ENGINE ─── */
+@media (max-width: 900px) {
+  .product-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 680px) {
+  section { padding: 3.5rem 5%; }
+  
+  nav { 
+    flex-direction: column !important;
+    gap: 0.8rem;
+    padding: 1.2rem 5%; 
+    align-items: center;
+  }
+  nav ul { 
+    gap: 1.2rem; 
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .theme-prompt-bar {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem 0;
+  }
+  
+  #hero {
+    padding-top: 2rem;
+  }
+
+  .hero-inner { flex-direction: column-reverse; text-align: center; gap: 2rem; }
+  .hero-text { display: flex; flex-direction: column; align-items: center; }
+  .hero-socials { display: flex; justify-content: center; width: 100%; margin-top: 1.5rem; }
+  .hero-photo { width: 200px; height: 200px; }
+
+  .two-col { grid-template-columns: 1fr; gap: 2.5rem; }
+  .skills-grid { grid-template-columns: 1fr; gap: 1rem; }
+
+  .product-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 1.2rem;
+    padding: 0.5rem 1rem 1.5rem;
+    margin-left: -5%; margin-right: -5%;
+    padding-left: 10%; padding-right: 10%;
+    align-items: stretch;
+  }
+  .product-grid::-webkit-scrollbar { display: none; }
+  
+  .product-card { 
+    flex: 0 0 80vw; 
+    scroll-snap-align: center; 
+    height: auto;
+  }
+  
+  .product-img, 
+  .product-img-placeholder {
+    aspect-ratio: 16 / 10;
+  }
+  
+  .product-img-placeholder {
+    display: block;
+  }
+
+  .slider-dots { display: flex; }
+}
