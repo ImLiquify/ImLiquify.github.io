@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Hey it's Mohamed Kaiser👋 | Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=700&family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -22,7 +22,9 @@
 
   <div class="theme-prompt-bar">
     <div class="theme-prompt-content">
-      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle system color scheme"></button>
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle system color scheme">
+        <i class="fas fa-moon theme-icon-element"></i>
+      </button>
       <div class="theme-arrow"></div>
       <span class="theme-prompt-text">Press this to change theme!</span>
     </div>
@@ -193,6 +195,16 @@
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
+    
+    // Dynamic icon switching
+    const iconEl = document.querySelector('.theme-icon-element');
+    if (iconEl) {
+      if (theme === 'dark') {
+        iconEl.className = 'fas fa-sun theme-icon-element';
+      } else {
+        iconEl.className = 'fas fa-moon theme-icon-element';
+      }
+    }
   }
 
   themeToggleBtn.addEventListener('click', () => {
@@ -239,7 +251,7 @@
         if (externalData.settings) settings = externalData.settings;
       }
     } catch (e) {
-      console.log("No deployed portfolio-data.json file processed yet. Running browser fallbacks.");
+      console.log("Using browser local storage backups.");
     }
 
     if (localStorage.getItem('hero')) hero = JSON.parse(localStorage.getItem('hero'));
