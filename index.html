@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Hey it's Mohamed Kaiser👋 | Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=700&family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
@@ -147,7 +147,7 @@
           <div class="contact-icon-circle"><i class="fab fa-github"></i></div><span>GitHub</span>
         </a>
         <a id="c-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" class="contact-icon-item" title="LinkedIn">
-          <div class="contact-icon-circle"><i class="fab fa-linkedin"></i></div><span>LinkedIn</span>
+          <div class="contact-icon-circle"><i class="fab fa-linkedin-in"></i></div><span>LinkedIn</span>
         </a>
         <a id="c-wa" href="https://wa.me/60178710035" target="_blank" class="contact-icon-item" title="WhatsApp">
           <div class="contact-icon-circle"><i class="fab fa-whatsapp"></i></div><span>WhatsApp</span>
@@ -197,7 +197,6 @@
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     
-    // Dynamic icon and text mode text toggling
     const iconEl = document.querySelector('.theme-icon-element');
     if (iconEl) {
       if (theme === 'dark') {
@@ -210,13 +209,11 @@
     }
   }
 
-  // Click listener mapped to entire container node surface
   themePromptNote.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
   });
 
-  // Support Keyboard Space/Enter for accessibility toggling
   themePromptNote.addEventListener('keydown', (e) => {
     if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
