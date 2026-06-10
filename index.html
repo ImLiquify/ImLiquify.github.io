@@ -5,133 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">Hey it's Mohamed Kaiser👋 | Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
-  
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
-  <style>
-    /* ── DARK MODE SYSTEM VARIABLES ── */
-    :root {
-      --bg-primary: #ffffff;
-      --bg-light: #f8f9fa;
-      --text-main: #1a1a1a;
-      --text-muted: #666666;
-      --card-bg: #ffffff;
-      --border-color: #eeeeee;
-      --nav-bg: rgba(255, 255, 255, 0.95);
-      --accent-handwritten: #b0856a;
-    }
-
-    [data-theme="dark"] {
-      --bg-primary: #121212;
-      --bg-light: #1e1e1e;
-      --text-main: #f5f3f0;
-      --text-muted: #b0b0b0;
-      --card-bg: #1d1d1d;
-      --border-color: #333333;
-      --nav-bg: rgba(18, 18, 18, 0.95);
-      --accent-handwritten: #e5b38e;
-    }
-
-    /* Override structural layouts dynamically to use core CSS variables */
-    body {
-      background-color: var(--bg-primary);
-      color: var(--text-main);
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    
-    nav {
-      background: var(--nav-bg) !important;
-      border-bottom: 1px solid var(--border-color);
-    }
-
-    .bg-light {
-      background-color: var(--bg-light) !important;
-      transition: background-color 0.3s ease;
-    }
-
-    .product-card, .skill-card, .edu-item, .popup {
-      background-color: var(--card-bg) !important;
-      border: 1px solid var(--border-color);
-      color: var(--text-main) !important;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .product-info h3, .skill-card h3, .edu-body h3, .popup-content h2 {
-      color: var(--text-main) !important;
-    }
-
-    .product-meta, .product-info p, .skill-card p, .edu-meta, .edu-note, .popup-meta, .popup-desc {
-      color: var(--text-muted) !important;
-    }
-
-    /* ── NEW CARTOONY HANDWRITTEN PROMPT BAR STYLES ── */
-    .theme-prompt-bar {
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      padding: 0.6rem 5% 0.9rem;
-      background-color: var(--bg-primary);
-      border-bottom: 1px solid var(--border-color);
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-
-    .theme-prompt-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Minimalist color-free circle outline toggle button */
-    .theme-toggle-btn {
-      background: transparent;
-      width: 16px;
-      height: 16px;
-      border: 1px solid var(--text-muted);
-      border-radius: 50%;
-      cursor: pointer;
-      padding: 0;
-      display: block;
-      flex-shrink: 0;
-      transition: border-color 0.2s ease, transform 0.2s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .theme-toggle-btn:hover {
-      border-color: var(--text-main);
-      transform: scale(1.1);
-    }
-
-    /* Vector Curly Arrow Layout Asset Box */
-    .theme-arrow-container {
-      width: 32px;
-      height: 22px;
-      margin-left: 0.6rem;
-      margin-right: 0.4rem;
-      display: flex;
-      align-items: center;
-      color: var(--accent-handwritten);
-    }
-
-    .cartoon-arrow {
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Playful Handwriting style typography prompt text */
-    .theme-prompt-text {
-      font-family: 'Caveat', cursive;
-      font-size: 1.45rem;
-      font-weight: 500;
-      color: var(--accent-handwritten);
-      user-select: none;
-      line-height: 1;
-      padding-top: 3px;
-    }
-  </style>
 </head>
 <body>
 
@@ -148,13 +23,8 @@
   <div class="theme-prompt-bar">
     <div class="theme-prompt-content">
       <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle system color scheme"></button>
-      <div class="theme-arrow-container">
-        <svg class="cartoon-arrow" viewBox="0 0 50 30" xmlns="http://www.w3.org/2000/svg">
-          <path d="M45,5 C35,25 15,20 8,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          <path d="M12,7 L6,13 L14,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <span id="theme-prompt-text" class="theme-prompt-text">View in Light Mode?</span>
+      <div class="theme-arrow"></div>
+      <span class="theme-prompt-text">Press this to change theme!</span>
     </div>
   </div>
 
@@ -173,7 +43,7 @@
         </div>
       </div>
       <div class="hero-photo">
-        <img src="images/profile.jpg" alt="Mohamed Kaiser" />
+        <img src="images/me.jpg" alt="Mohamed Kaiser" />
       </div>
     </div>
   </section>
@@ -311,9 +181,8 @@
   </div>
 
 <script>
-  // ── DARK MODE SYSTEM ENGINE (INITIALIZE AS EARLY AS POSSIBLE) ──
+  // ── DARK/LIGHT INTERACTIVE ENGINE ──
   const themeToggleBtn = document.getElementById('theme-toggle');
-  const themePromptText = document.getElementById('theme-prompt-text');
 
   function getInitialTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -324,13 +193,6 @@
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    
-    // Dynamically updates handwritten cartoon caption context string labels
-    if (theme === 'dark') {
-      themePromptText.textContent = 'View in Light Mode?';
-    } else {
-      themePromptText.textContent = 'View in Dark Mode?';
-    }
   }
 
   themeToggleBtn.addEventListener('click', () => {
@@ -356,7 +218,7 @@
     { id:7, title:'Shell STEM Innovation Challenges', date:'2019 – 2022', short:'Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car.', long:'Led student teams across two years of national STEM competitions. Built four hardware systems: a Salt-Water Electrolysis Electric Car, an Automated Pool Energy Recovery System, a Guard Sleep-Monitoring Alert, and an Automatic Overflow & Irrigation Pump Controller.', tags:['Arduino C++','Hardware'], github:'', img:'', imgs:[] }
   ];
 
-  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'KSummary', email:'mohdkaiser1806@gmail.com' };
+  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'Kuala Lumpur, Malaysia', email:'mohdkaiser1806@gmail.com' };
   const DEFAULT_SETTINGS = { email:'mohdkaiser1806@gmail.com', github:'https://github.com/ImLiquify', linkedin:'https://www.linkedin.com/in/mohamed-kaiser-04093532b/', wa:'60178710035' };
 
   function getData(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
@@ -377,7 +239,7 @@
         if (externalData.settings) settings = externalData.settings;
       }
     } catch (e) {
-      console.log("No deployed data targets processed yet.");
+      console.log("No deployed portfolio-data.json file processed yet. Running browser fallbacks.");
     }
 
     if (localStorage.getItem('hero')) hero = JSON.parse(localStorage.getItem('hero'));
