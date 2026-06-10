@@ -2,21 +2,141 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mohamed Kaiser | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">Hey it's Mohamed Kaiser👋 | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
   
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── DARK MODE SYSTEM VARIABLES ── */
+    :root {
+      --bg-primary: #ffffff;
+      --bg-light: #f8f9fa;
+      --text-main: #1a1a1a;
+      --text-muted: #666666;
+      --card-bg: #ffffff;
+      --border-color: #eeeeee;
+      --nav-bg: rgba(255, 255, 255, 0.95);
+      --accent-handwritten: #b0856a;
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #121212;
+      --bg-light: #1e1e1e;
+      --text-main: #f5f3f0;
+      --text-muted: #b0b0b0;
+      --card-bg: #1d1d1d;
+      --border-color: #333333;
+      --nav-bg: rgba(18, 18, 18, 0.95);
+      --accent-handwritten: #e5b38e;
+    }
+
+    /* Override structural layouts dynamically to use core CSS variables */
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    
+    nav {
+      background: var(--nav-bg) !important;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .bg-light {
+      background-color: var(--bg-light) !important;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-card, .skill-card, .edu-item, .popup {
+      background-color: var(--card-bg) !important;
+      border: 1px solid var(--border-color);
+      color: var(--text-main) !important;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .product-info h3, .skill-card h3, .edu-body h3, .popup-content h2 {
+      color: var(--text-main) !important;
+    }
+
+    .product-meta, .product-info p, .skill-card p, .edu-meta, .edu-note, .popup-meta, .popup-desc {
+      color: var(--text-muted) !important;
+    }
+
+    /* ── NEW CARTOONY HANDWRITTEN PROMPT BAR STYLES ── */
+    .theme-prompt-bar {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 0.6rem 5% 0.9rem;
+      background-color: var(--bg-primary);
+      border-bottom: 1px solid var(--border-color);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .theme-prompt-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Minimalist color-free circle outline toggle button */
+    .theme-toggle-btn {
+      background: transparent;
+      width: 16px;
+      height: 16px;
+      border: 1px solid var(--text-muted);
+      border-radius: 50%;
+      cursor: pointer;
+      padding: 0;
+      display: block;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .theme-toggle-btn:hover {
+      border-color: var(--text-main);
+      transform: scale(1.1);
+    }
+
+    /* Vector Curly Arrow Layout Asset Box */
+    .theme-arrow-container {
+      width: 32px;
+      height: 22px;
+      margin-left: 0.6rem;
+      margin-right: 0.4rem;
+      display: flex;
+      align-items: center;
+      color: var(--accent-handwritten);
+    }
+
+    .cartoon-arrow {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Playful Handwriting style typography prompt text */
+    .theme-prompt-text {
+      font-family: 'Caveat', cursive;
+      font-size: 1.45rem;
+      font-weight: 500;
+      color: var(--accent-handwritten);
+      user-select: none;
+      line-height: 1;
+      padding-top: 3px;
+    }
+  </style>
 </head>
-<body data-theme="dark">
+<body>
 
   <nav>
-    <div class="nav-name">Mohamed Kaiser</div>
+    <span class="nav-name" id="nav-name">Mohamed Kaiser</span>
     <ul>
       <li><a href="#about">About Me!</a></li>
       <li><a href="#skills">My Skills</a></li>
@@ -27,187 +147,392 @@
 
   <div class="theme-prompt-bar">
     <div class="theme-prompt-content">
-      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme"></button>
+      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle system color scheme"></button>
+      <div class="theme-arrow-container">
+        <svg class="cartoon-arrow" viewBox="0 0 50 30" xmlns="http://www.w3.org/2000/svg">
+          <path d="M45,5 C35,25 15,20 8,12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          <path d="M12,7 L6,13 L14,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
       <span id="theme-prompt-text" class="theme-prompt-text">View in Light Mode?</span>
-      <div class="theme-arrow"></div>
     </div>
   </div>
 
   <section id="hero">
     <div class="hero-inner">
       <div class="hero-text">
-        <div class="hero-tag">Diploma in ICT · APU</div>
-        <h1>Hi, I'm <span class="accent">Mohamed Kaiser</span></h1>
-        <p class="hero-sub">ICT Student & Tech-Forward Problem Solver</p>
+        <p class="hero-tag" id="hero-tag">Diploma in ICT · APU</p>
+        <h1>Hi, I'm <span class="accent" id="hero-name">Mohamed Kaiser</span></h1>
+        <p class="hero-sub" id="hero-sub">ICT Student & Tech-Forward Problem Solver</p>
         <a href="#projects" class="btn">View My Work</a>
-        
-        <div class="hero-socials">
-          <a href="mailto:your-email@example.com" aria-label="Email"><i class="fa-regular fa-envelope"></i></a>
-          <a href="https://github.com/" target="_blank" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-          <a href="https://linkedin.com/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <a href="https://wa.me/" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <div class="hero-socials" id="hero-socials">
+          <a id="social-email" href="mailto:mohdkaiser1806@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a id="social-github" href="https://github.com/ImLiquify" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a id="social-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a id="social-wa" href="https://wa.me/60178710035" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
       </div>
       <div class="hero-photo">
-        <img src="profile.jpg" alt="Mohamed Kaiser Profile Picture">
+        <img src="images/profile.jpg" alt="Mohamed Kaiser" />
       </div>
     </div>
   </section>
 
-  <section id="about" class="bg-light">
-    <div class="section-inner">
-      <h2>About Me</h2>
-      <p class="section-sub">Who I am and my background</p>
-      <div class="two-col">
-        <div>
-          <p>I am a dedicated Information and Communications Technology student passionate about solving real-world structural problems through elegant engineering configurations and scalable software architectures.</p>
-          <p>Currently pursuing my diploma studies at Asia Pacific University (APU), I focus on clean design frameworks, systems design, and interface accessibility.</p>
-        </div>
-        <div class="about-details">
-          <div class="detail-item">
-            <span class="label">Location</span>
-            <span class="text-main">Kuala Lumpur, Malaysia</span>
-          </div>
-          <div class="detail-item">
-            <span class="label">Education</span>
-            <span class="text-main">Asia Pacific University (APU)</span>
-          </div>
-        </div>
+  <section id="about">
+    <div class="section-inner two-col">
+      <div>
+        <h2>About Me</h2>
+        <p id="about-p1">I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.</p>
+        <p id="about-p2">When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.</p>
+      </div>
+      <div class="about-details">
+        <div class="detail-item"><span class="label">University</span><span id="d-uni">Asia Pacific University (APU)</span></div>
+        <div class="detail-item"><span class="label">Programme</span><span id="d-prog">Diploma in ICT (General)</span></div>
+        <div class="detail-item"><span class="label">CGPA</span><span id="d-cgpa">3.44 / 4.00</span></div>
+        <div class="detail-item"><span class="label">Location</span><span id="d-loc">Kuala Lumpur, Malaysia</span></div>
+        <div class="detail-item"><span class="label">Email</span><span id="d-email">mohdkaiser1806@gmail.com</span></div>
       </div>
     </div>
   </section>
 
-  <section id="skills">
+  <section id="skills" class="bg-light">
     <div class="section-inner">
-      <h2>My Skills</h2>
-      <p class="section-sub">Tools, stacks, and frameworks I build with</p>
+      <h2>Skills</h2>
       <div class="skills-grid">
-        <div class="skill-card">
-          <span class="skill-icon">💻</span>
-          <h3>Frontend Engine</h3>
-          <p>HTML5, CSS3 structural layout architecture, modern JavaScript frameworks.</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">🛠️</span>
-          <h3>Backend & Systems</h3>
-          <p>Database management engineering, clean API structures, systems architecture logic.</p>
-        </div>
-        <div class="skill-card">
-          <span class="skill-icon">🎨</span>
-          <h3>UI/UX Styling</h3>
-          <p>Responsive mobile viewport styling, accessible layout setups, design system guidelines.</p>
-        </div>
+        <div class="skill-card"><span class="skill-icon">🤖</span><h3>AI-Assisted Dev</h3><p>Windsurf, Cascade, Prompt Engineering (basics)</p></div>
+        <div class="skill-card"><span class="skill-icon">🌐</span><h3>Automation & Web</h3><p>AppScript, PHP, MySQL, JavaScript, HTML, CSS</p></div>
+        <div class="skill-card"><span class="skill-icon">💻</span><h3>Programming</h3><p>Python, Java (OOP), C++, HTML5, CSS3</p></div>
+        <div class="skill-card"><span class="skill-icon">🛠️</span><h3>IoT & Hardware</h3><p>Arduino, Embedded C++, Sensor Integration</p></div>
+        <div class="skill-card"><span class="skill-icon">🏢</span><h3>Design & 3D</h3><p>SketchUp 3D, Enscape 3D, Figma</p></div>
+        <div class="skill-card"><span class="skill-icon">🔃</span><h3>More to Come</h3><p>Actively Learning...</p></div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="bg-light">
+  <section id="projects">
     <div class="section-inner">
-      <h2>My Projects</h2>
-      <p class="section-sub">A showcase of recent software and database development work</p>
+      <h2>Projects</h2>
+      <p class="section-sub">Swipe or click any project card to look through my work</p>
+      
       <div class="slider-container">
-        <div class="product-grid">
-          
-          <div class="product-card" onclick="openPopup(1)">
-            <div class="product-img">
-              <div class="product-img-placeholder"></div>
-            </div>
-            <div class="product-info">
-              <span class="product-meta">Database Management</span>
-              <h3>Scalable Database Project</h3>
-              <p>An alternative standalone approach to storing, tracking, and presenting data arrays without needing high-end local assets.</p>
-              <div class="project-tags">
-                <span class="tag">SQL</span>
-                <span class="tag">Data Architecture</span>
-              </div>
-            </div>
-          </div>
+        <div class="product-grid" id="product-grid"></div>
+        <div class="slider-dots" id="slider-dots"></div>
+      </div>
+    </div>
+  </section>
 
-          <div class="product-card" onclick="openPopup(2)">
-            <div class="product-img">
-              <div class="product-img-placeholder"></div>
-            </div>
-            <div class="product-info">
-              <span class="product-meta">Web Application</span>
-              <h3>Responsive Interface Hub</h3>
-              <p>A web portfolio environment carefully structured to dynamically resize seamlessly for desktop, tablet, and mobile displays.</p>
-              <div class="project-tags">
-                <span class="tag">HTML5</span>
-                <span class="tag">CSS3 Architecture</span>
-              </div>
-            </div>
+  <section id="education" class="bg-light">
+    <div class="section-inner">
+      <h2>Education</h2>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div class="edu-meta">2024 – Nov 2026</div>
+          <div class="edu-body">
+            <h3>Diploma in Information & Communication Technology</h3>
+            <p>Asia Pacific University (APU), Kuala Lumpur</p>
+            <p class="edu-note">CGPA: 3.44 / 4.00 · A+ in AI, Mathematics, Operating Systems, Algebra</p>
           </div>
-
-          <div class="product-card" onclick="openPopup(3)">
-            <div class="product-img">
-              <div class="product-img-placeholder"></div>
-            </div>
-            <div class="product-info">
-              <span class="product-meta">UI Engineering</span>
-              <h3>Accessible Theme Engine</h3>
-              <p>A dual light/dark responsive theme solution featuring highly specific text isolating variables for visibility contrast.</p>
-              <div class="project-tags">
-                <span class="tag">JavaScript</span>
-                <span class="tag">CSS Variables</span>
-              </div>
-            </div>
-          </div>
-
         </div>
-        <div class="slider-dots">
-          <button class="dot active" aria-label="Go to slide 1"></button>
-          <button class="dot" aria-label="Go to slide 2"></button>
-          <button class="dot" aria-label="Go to slide 3"></button>
+        <div class="edu-item">
+          <div class="edu-meta">2023</div>
+          <div class="edu-body">
+            <h3>Sijil Pelajaran Malaysia (SPM)</h3>
+            <p>A in Mathematics · A in English · A- in Computer Science</p>
+            <p class="edu-note">CEFR C1 English Proficiency · Score: 193</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-meta">2024</div>
+          <div class="edu-body">
+            <h3>CEFR C1 English Proficiency</h3>
+            <p>Distinction · Score: 193</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="contact">
+  <section id="cert">
+    <div class="section-inner">
+      <h2>Certifications</h2>
+      <div class="edu-list">
+        <div class="edu-item"><div class="edu-meta">Dell</div><div class="edu-body"><h3>DELL Tech Talk: LLMs & Machine Learning</h3><p>Dell Technologies</p></div></div>
+        <div class="edu-item"><div class="edu-meta">APU</div><div class="edu-body"><h3>Smart & Adaptive AI Agents at the Edge</h3><p>Asia Pacific University</p></div></div>
+        <div class="edu-item"><div class="edu-meta">UM</div><div class="edu-body"><h3>Practical AI Workshop</h3><p>UM Startup Ecosystem</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="bg-light">
     <div class="section-inner contact-inner">
-      <h2>Let's Connect</h2>
-      <p>Whether you're looking to discuss a project, review a repository, or explore tech opportunities, feel free to drop me a line.</p>
-      <div class="contact-icons">
-        <a href="mailto:your-email@example.com" class="contact-icon-item">
-          <div class="contact-icon-circle"><i class="fa-regular fa-envelope"></i></div>
-          <span>Email</span>
+      <h2>Get In Touch</h2>
+      <p>I'm open to Internship Opportunities and Collaboration.</p>
+      <div class="contact-icons" id="contact-icons">
+        <a id="c-email" href="mailto:mohdkaiser1806@gmail.com" class="contact-icon-item" title="Email">
+          <div class="contact-icon-circle"><i class="fas fa-envelope"></i></div><span>Email</span>
         </a>
-        <a href="https://github.com/" target="_blank" class="contact-icon-item">
-          <div class="contact-icon-circle"><i class="fa-brands fa-github"></i></div>
-          <span>GitHub</span>
+        <a id="c-github" href="https://github.com/ImLiquify" target="_blank" class="contact-icon-item" title="GitHub">
+          <div class="contact-icon-circle"><i class="fab fa-github"></i></div><span>GitHub</span>
         </a>
-        <a href="https://linkedin.com/" target="_blank" class="contact-icon-item">
-          <div class="contact-icon-circle"><i class="fa-brands fa-linkedin-in"></i></div>
-          <span>LinkedIn</span>
+        <a id="c-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" class="contact-icon-item" title="LinkedIn">
+          <div class="contact-icon-circle"><i class="fab fa-linkedin"></i></div><span>LinkedIn</span>
+        </a>
+        <a id="c-wa" href="https://wa.me/60178710035" target="_blank" class="contact-icon-item" title="WhatsApp">
+          <div class="contact-icon-circle"><i class="fab fa-whatsapp"></i></div><span>WhatsApp</span>
         </a>
       </div>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2026 Mohamed Kaiser. All rights reserved.</p>
+    <p>© 2026 <span id="footer-name">Mohamed Kaiser</span> · Built with HTML & CSS</p>
   </footer>
 
-  <script>
-    const themeToggleBtn = document.getElementById('theme-toggle');
-    const themePromptText = document.getElementById('theme-prompt-text');
-    const bodyElement = document.body;
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup(event)">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopupDirect()">×</button>
+      
+      <div class="popup-carousel-container" id="popup-carousel-container">
+        <button class="carousel-arrow prev" id="carousel-arrow-prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-arrow next" id="carousel-arrow-next" onclick="moveCarousel(1)">&#10095;</button>
+        
+        <div class="popup-imgs" id="popup-imgs"></div>
+        <div class="popup-img-dots" id="popup-img-dots"></div>
+      </div>
 
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = bodyElement.getAttribute('data-theme');
-      if (currentTheme === 'dark') {
-        bodyElement.setAttribute('data-theme', 'light');
-        themePromptText.textContent = 'View in Dark Mode?';
-      } else {
-        bodyElement.setAttribute('data-theme', 'dark');
-        themePromptText.textContent = 'View in Light Mode?';
-      }
-    });
+      <div class="popup-content">
+        <div class="popup-meta" id="popup-meta"></div>
+        <h2 class="popup-title" id="popup-title"></h2>
+        <p class="popup-desc" id="popup-desc"></p>
+        <div class="project-tags" id="popup-tags"></div>
+        <a class="popup-github-btn" id="popup-github-btn" href="#" target="_blank">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
 
-    // Optional Portfolio Popup engine helper stub
-    function openPopup(id) {
-      console.log("Opening details for project node: " + id);
+<script>
+  // ── DARK MODE SYSTEM ENGINE (INITIALIZE AS EARLY AS POSSIBLE) ──
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themePromptText = document.getElementById('theme-prompt-text');
+
+  function getInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    // Dynamically updates handwritten cartoon caption context string labels
+    if (theme === 'dark') {
+      themePromptText.textContent = 'View in Light Mode?';
+    } else {
+      themePromptText.textContent = 'View in Dark Mode?';
     }
-  </script>
+  }
+
+  themeToggleBtn.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
+    }
+  });
+
+  applyTheme(getInitialTheme());
+
+  const DEFAULT_PROJECTS = [
+    { id:1, title:'Fix n Flip', date:'Jan 2026 – Present', short:'E-waste marketplace for APU students to buy, sell and repair devices. Role-based access with full lifecycle tracking.', long:'Led my team to build a website for APU students to buy and sell devices at lower prices. Includes role-based access for Admins, Technicians, Clerks, and Users with full device lifecycle tracking. Built a 31-table relational database and 15+ dynamic pages.', tags:['PHP','MySQL','JavaScript','HTML','CSS'], github:'https://github.com/ImLiquify', img:'fixnflip.jpg', imgs:['fixnflip.jpg','fixnflip2.jpg'] },
+    { id:2, title:'Automated Smart Greenhouse', date:'Nov 2025 – Present', short:'IoT system with Arduino & ESP32. Automates irrigation and lighting based on soil and crop type.', long:'Built an IoT monitoring system using Arduino and ESP32 with a web dashboard. Automates irrigation based on soil moisture and adjusts LED lighting by crop type. Includes water pump burn-out prevention.', tags:['Arduino C++','HTML','CSS'], github:'https://github.com/ImLiquify', img:'greenhouse.jpg', imgs:['greenhouse.jpg','greenhouse2.jpg'] },
+    { id:3, title:'Enhanced TaoBao (Figma)', date:'Jun 2025 – Present', short:'Full UI/UX redesign of TaoBao. Cleaner layout, better hierarchy, focused on converting buyers.', long:'Conducted user research, competitor analysis, and information architecture. Designed user flows and multiple high and low fidelity mockups. Developed a complete advanced website prototype in Figma focused on reducing clutter and improving purchasing conversion.', tags:['Figma','UI/UX'], github:'', img:'taobao.jpg', imgs:['taobao.jpg','taobao2.jpg'] },
+    { id:4, title:'Hospital Management System', date:'Jul 2025 – Present', short:'Desktop app in Java OOP to manage Nurses, Doctors and Patients with login access control.', long:'Built a desktop app using NetBeans UI to demonstrate core OOP principles. Implemented Admin features and login functions. Applies Encapsulation, Inheritance, and modular structure.', tags:['Java OOP','NetBeans'], github:'', img:'', imgs:[] },
+    { id:5, title:'Restaurant Market List Automation', date:'2024 – 2025', short:"Google Sheets tracker for my family's restaurant with AppScript automations and auto email reports.", long:"Built a shared Google Sheets procurement tracker for my family's restaurant. AppScript automations run monthly: archiving data, auto-generating fresh sheets, and sending a year-end summary email to the owner.", tags:['Google Sheets','AppScript','JavaScript'], github:'', img:'restaurant.jpg', imgs:['restaurant.jpg','restaurant2.jpg'] },
+    { id:6, title:'3D Restaurant Architectural Design', date:'2025', short:"Full spatial layout and interior design using SketchUp 3D with photorealistic Enscape renders.", long:"Designed the full spatial layout and interior of my parents' restaurant pre-renovation using SketchUp 3D. Produced photorealistic renders and walkthroughs using Enscape for review before construction.", tags:['SketchUp 3D','Enscape'], github:'', img:'restaurant3d.jpg', imgs:['restaurant3d.jpg','restaurant3d2.jpg'] },
+    { id:7, title:'Shell STEM Innovation Challenges', date:'2019 – 2022', short:'Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car.', long:'Led student teams across two years of national STEM competitions. Built four hardware systems: a Salt-Water Electrolysis Electric Car, an Automated Pool Energy Recovery System, a Guard Sleep-Monitoring Alert, and an Automatic Overflow & Irrigation Pump Controller.', tags:['Arduino C++','Hardware'], github:'', img:'', imgs:[] }
+  ];
+
+  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'KSummary', email:'mohdkaiser1806@gmail.com' };
+  const DEFAULT_SETTINGS = { email:'mohdkaiser1806@gmail.com', github:'https://github.com/ImLiquify', linkedin:'https://www.linkedin.com/in/mohamed-kaiser-04093532b/', wa:'60178710035' };
+
+  function getData(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
+
+  window.loadedProjectsInstance = DEFAULT_PROJECTS;
+
+  async function loadPortfolioEngine() {
+    let projects = DEFAULT_PROJECTS;
+    let hero = DEFAULT_HERO;
+    let settings = DEFAULT_SETTINGS;
+
+    try {
+      const response = await fetch('portfolio-data.json');
+      if (response.ok) {
+        const externalData = await response.json();
+        if (externalData.projects) projects = externalData.projects;
+        if (externalData.hero) hero = externalData.hero;
+        if (externalData.settings) settings = externalData.settings;
+      }
+    } catch (e) {
+      console.log("No deployed data targets processed yet.");
+    }
+
+    if (localStorage.getItem('hero')) hero = JSON.parse(localStorage.getItem('hero'));
+    if (localStorage.getItem('settings')) settings = JSON.parse(localStorage.getItem('settings'));
+    if (localStorage.getItem('projects')) projects = JSON.parse(localStorage.getItem('projects'));
+
+    window.loadedProjectsInstance = projects;
+
+    document.getElementById('hero-name').textContent = hero.name;
+    document.getElementById('hero-tag').textContent = hero.tag;
+    document.getElementById('hero-sub').textContent = hero.sub;
+    document.getElementById('nav-name').textContent = hero.name;
+    document.getElementById('footer-name').textContent = hero.name;
+    document.getElementById('about-p1').textContent = hero.about1;
+    document.getElementById('about-p2').textContent = hero.about2;
+    document.getElementById('d-uni').textContent = hero.uni;
+    document.getElementById('d-prog').textContent = hero.prog;
+    document.getElementById('d-cgpa').textContent = hero.cgpa;
+    document.getElementById('d-loc').textContent = hero.loc;
+    document.getElementById('d-email').textContent = hero.email;
+
+    document.getElementById('social-email').href = 'mailto:' + settings.email;
+    document.getElementById('social-github').href = settings.github;
+    document.getElementById('social-linkedin').href = settings.linkedin;
+    document.getElementById('social-wa').href = 'https://wa.me/' + settings.wa;
+    document.getElementById('c-email').href = 'mailto:' + settings.email;
+    document.getElementById('c-github').href = settings.github;
+    document.getElementById('c-linkedin').href = settings.linkedin;
+    document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
+
+    renderGrid(projects);
+  }
+
+  function renderGrid(projectsData) {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = projectsData.map((p, index) => {
+      const hasImg = p.img && p.img.trim();
+      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      const imgHtml = hasImg
+        ? `<div class="product-img"><img src="images/${p.img}" alt="${p.title}" /><div class="product-overlay"></div></div>`
+        : `<div class="product-img-placeholder"></div>`;
+
+      return `
+        <div class="product-card" data-index="${index}" onclick="handleCardClick(${p.id})">
+          ${imgHtml}
+          <div class="product-info">
+            <div class="product-meta">${p.date}</div>
+            <h3>${p.title}</h3>
+            <p>${p.short}</p>
+            <div class="project-tags">${tags}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    const dotsContainer = document.getElementById('slider-dots');
+    dotsContainer.innerHTML = projectsData.map((_, idx) => `
+      <button class="dot ${idx === 0 ? 'active' : ''}" onclick="scrollToCard(${idx})"></button>
+    `).join('');
+  }
+
+  const grid = document.getElementById('product-grid');
+  const dotsContainer = document.getElementById('slider-dots');
+
+  function scrollToCard(idx) {
+    const cards = grid.querySelectorAll('.product-card');
+    if(cards[idx]) cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  grid.addEventListener('scroll', () => {
+    const cards = grid.querySelectorAll('.product-card');
+    if(!cards.length) return;
+    let closestIdx = 0; let minDiff = Infinity;
+    const gridCenter = grid.getBoundingClientRect().left + grid.offsetWidth / 2;
+    cards.forEach((card, idx) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const diff = Math.abs(gridCenter - cardCenter);
+      if (diff < minDiff) { minDiff = diff; closestIdx = idx; }
+    });
+    const dots = dotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, idx) => { if(idx === closestIdx) dot.classList.add('active'); else dot.classList.remove('active'); });
+  });
+
+  function handleCardClick(id) {
+    const p = window.loadedProjectsInstance.find(x => x.id === id);
+    if (!p) return;
+    if (p.github && (!p.imgs || !p.imgs.length)) { window.open(p.github, '_blank'); return; }
+    openPopup(p);
+  }
+
+  function openPopup(p) {
+    document.getElementById('popup-meta').textContent = p.date;
+    document.getElementById('popup-title').textContent = p.title;
+    document.getElementById('popup-desc').textContent = p.long || p.short;
+    document.getElementById('popup-tags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    const ghBtn = document.getElementById('popup-github-btn');
+    if (p.github) { ghBtn.href = p.github; ghBtn.style.display = 'inline-block'; } else { ghBtn.style.display = 'none'; }
+
+    const imgsDiv = document.getElementById('popup-imgs');
+    const imgDotsDiv = document.getElementById('popup-img-dots');
+    const carouselContainer = document.getElementById('popup-carousel-container');
+    const prevArrow = document.getElementById('carousel-arrow-prev');
+    const nextArrow = document.getElementById('carousel-arrow-next');
+
+    if (p.imgs && p.imgs.length) {
+      carouselContainer.style.display = 'block';
+      
+      if (p.imgs.length <= 1) {
+        prevArrow.style.display = 'none';
+        nextArrow.style.display = 'none';
+      } else {
+        prevArrow.style.display = 'flex';
+        nextArrow.style.display = 'flex';
+      }
+
+      imgsDiv.innerHTML = p.imgs.map(img => `
+        <div class="popup-carousel-item">
+          <img src="images/${img}" alt="${p.title}" />
+        </div>
+      `).join('');
+
+      imgDotsDiv.innerHTML = p.imgs.map((_, idx) => `
+        <span class="popup-img-dot ${idx === 0 ? 'active' : ''}"></span>
+      `).join('');
+
+      imgsDiv.scrollLeft = 0;
+      imgsDiv.onscroll = () => {
+        const itemWidth = imgsDiv.clientWidth;
+        if(itemWidth === 0) return;
+        const activeIndex = Math.round(imgsDiv.scrollLeft / itemWidth);
+        const dots = imgDotsDiv.querySelectorAll('.popup-img-dot');
+        dots.forEach((dot, idx) => { if (idx === activeIndex) dot.classList.add('active'); else dot.classList.remove('active'); });
+      };
+    } else {
+      carouselContainer.style.display = 'none';
+      imgsDiv.innerHTML = '';
+      imgDotsDiv.innerHTML = '';
+    }
+
+    document.getElementById('popup-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function moveCarousel(direction) {
+    const imgsDiv = document.getElementById('popup-imgs');
+    const itemWidth = imgsDiv.clientWidth;
+    imgsDiv.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
+  }
+
+  function closePopup(e) { if (e.target === document.getElementById('popup-overlay')) closePopupDirect(); }
+  function closePopupDirect() { document.getElementById('popup-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopupDirect(); });
+
+  loadPortfolioEngine();
+</script>
 </body>
 </html>
