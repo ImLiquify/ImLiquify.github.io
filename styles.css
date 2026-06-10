@@ -184,12 +184,9 @@ nav ul li a:hover {
   height: 24px;
   opacity: 0.9;
   margin-left: 0.2rem;
-  background-color: #8a5e3e; /* Uses the ink theme color directly */
-  
-  /* Vector path matched directly to your hand-drawn reference image */
+  background-color: #8a5e3e;
   -webkit-mask: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22black%22%3E%3Cpath%20d%3D%22M21.8%2C6.5%20C21.5%2C5.3%2020.1%2C4%2018.8%2C4.3%20C17.2%2C4.7%2015.1%2C5.9%2013.9%2C6.9%20C13.2%2C7.5%2013.6%2C8.5%2014.5%2C8.6%20C15.2%2C8.7%2016.4%2C8.1%2017.3%2C7.9%20C15.8%2C10.5%2013.2%2C13.8%2011.4%2C16.5%20C9.6%2C19.1%208.7%2C21.2%209%2C22.5%20C9.2%2C23.2%2010.2%2C23.4%2010.5%2C22.6%20C11.3%2C20.6%2012.7%2C17.9%2014.8%2C15%20C17%2C11.9%2019.9%2C8.5%2021.2%2C6.9%20C21.4%2C7.8%2021.3%2C9.2%2021.7%2C10%20C22%2C10.8%2023.1%2C10.5%2023%2C9.6%20C22.9%2C8.4%2022.1%2C7.3%2021.8%2C6.5%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat center;
   mask: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22black%22%3E%3Cpath%20d%3D%22M21.8%2C6.5%20C21.5%2C5.3%2020.1%2C4%2018.8%2C4.3%20C17.2%2C4.7%2015.1%2C5.9%2013.9%2C6.9%20C13.2%2C7.5%2013.6%2C8.5%2014.5%2C8.6%20C15.2%2C8.7%2016.4%2C8.1%2017.3%2C7.9%20C15.8%2C10.5%2013.2%2C13.8%2011.4%2C16.5%20C9.6%2C19.1%208.7%2C21.2%209%2C22.5%20C9.2%2C23.2%2010.2%2C23.4%2010.5%2C22.6%20C11.3%2C20.6%2012.7%2C17.9%2014.8%2C15%20C17%2C11.9%2019.9%2C8.5%2021.2%2C6.9%20C21.4%2C7.8%2021.3%2C9.2%2021.7%2C10%20C22%2C10.8%2023.1%2C10.5%2023%2C9.6%20C22.9%2C8.4%2022.1%2C7.3%2021.8%2C6.5%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat center;
-  
   transition: background-color 0.3s ease;
 }
 
@@ -262,6 +259,34 @@ nav ul li a:hover {
   max-width: 520px;
   margin-bottom: 2.5rem;
   font-weight: 300;
+}
+
+/* ─── HERO SOCIAL ICONS (RESTORED CIRCLES) ─── */
+.hero-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.8rem;
+  align-items: center;
+}
+
+.hero-socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-muted);
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
+}
+
+.hero-socials a:hover {
+  background-color: var(--text-main);
+  color: var(--bg-primary);
+  border-color: var(--text-main);
+  transform: translateY(-2px);
 }
 
 /* ─── BUTTONS ─── */
@@ -517,45 +542,15 @@ section h2 {
   transform: scale(1.2);
 }
 
-/* ─── CONTACT & FOOTER ─── */
-.contact-inner { text-align: center; }
-.contact-inner p { color: var(--text-muted); max-width: 460px; margin: 0 auto 2.5rem; }
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.82rem;
-  color: var(--text-placeholder);
-  border-top: 1px solid var(--border-color);
-  background-color: var(--bg-primary);
-  transition: background-color 0.3s ease, border-color 0.3s ease;
+/* ─── CONTACT FOOTER ICONS (RESTORED LARGE BUTTONS) ─── */
+.contact-inner { 
+  text-align: center; 
 }
 
-.hero-socials {
-  display: flex;
-  gap: 1rem;
-  margin-top: 1.8rem;
-  align-items: center;
-}
-
-.hero-socials a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--border-color);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: var(--text-muted);
-  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.15s;
-}
-
-.hero-socials a:hover {
-  background-color: var(--text-main);
-  color: var(--bg-primary);
-  border-color: var(--text-main);
-  transform: translateY(-2px);
+.contact-inner p { 
+  color: var(--text-muted); 
+  max-width: 460px; 
+  margin: 0 auto 2.5rem; 
 }
 
 .contact-icons {
@@ -598,6 +593,16 @@ footer {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
+}
+
+footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.82rem;
+  color: var(--text-placeholder);
+  border-top: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
 /* ─── POPUP OVERLAY MODAL ─── */
