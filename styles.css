@@ -15,18 +15,18 @@
 }
 
 [data-theme="dark"] {
-  --bg-primary: #1a1917;       /* Softer dark slate gray for text isolation */
-  --bg-light: #242320;         /* Clear, higher contrast row blocks */
-  --text-main: #ffffff;        /* Pure white for maximum primary title contrast */
-  --text-muted: #e6e4e2;       /* Bright off-white for crisp paragraph reading */
-  --text-dimmed: #b5b2ae;      /* Soft silver gray for structural details */
+  --bg-primary: #1a1917;       
+  --bg-light: #242320;         
+  --text-main: #ffffff;        
+  --text-muted: #e6e4e2;       
+  --text-dimmed: #b5b2ae;      
   --text-placeholder: #8c8984; 
-  --card-bg: #242320;          /* High contrast card layout boxes */
+  --card-bg: #242320;          
   --border-color: #33312e;     
   --border-hover: #4a4743;
   --border-card-hover: #5c5853;
   --nav-bg: rgba(26, 25, 23, 0.95);
-  --accent-color: #e5b38e;     /* Vibrant gold-accent contrast marker */
+  --accent-color: #e5b38e;     
 }
 
 /* ─── RESET & BASE ─── */
@@ -104,29 +104,39 @@ nav ul li a:hover {
   color: var(--text-main);
 }
 
-/* ─── STEALTH/HIDDEN TOGGLE BUTTON ─── */
+/* ─── SECRET DISCRETE OUTLINE TOGGLE ENGINE ─── */
 .theme-toggle-btn {
-  background: none;
-  border: none;
+  position: absolute;
+  top: 50%;
+  right: 1.5%;
+  transform: translateY(-50%);
+  
+  /* Reset appearance to a raw minimalist wireframe shape */
+  background: transparent;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--text-dimmed);
+  border-radius: 50%;
   cursor: pointer;
-  font-size: 0.95rem;          /* Smaller, subtle sizing footprint */
-  color: var(--text-dimmed);   /* Muted grey color signature baseline */
-  opacity: 0.6;                /* Blends naturally without calling attention */
-  padding: 6px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: opacity 0.2s ease, transform 0.2s ease, color 0.2s ease;
+  
+  /* Stealth properties */
+  opacity: 0.2;
+  font-size: 0; /* Fully conceals any text/emoji characters entirely inside the wireframe */
+  padding: 0;
+  z-index: 110;
+  
+  transition: opacity 0.25s ease, transform 0.2s ease, border-color 0.25s ease;
   -webkit-tap-highlight-color: transparent;
 }
 
 .theme-toggle-btn:hover {
-  opacity: 1;                  /* Lights up softly only when interacting */
-  color: var(--text-main);
+  opacity: 0.8;
+  transform: translateY(-50%) scale(1.1);
+  border-color: var(--text-main);
 }
 
 .theme-toggle-btn:active {
-  transform: scale(0.9);
+  transform: translateY(-50%) scale(0.95);
 }
 
 /* ─── HERO ─── */
@@ -719,12 +729,20 @@ footer {
   nav ul {
     gap: 1.2rem;
   }
+  .theme-toggle-btn {
+    right: 3%; /* Shifts slightly inward on tablet widths for safe finger targeting */
+  }
 }
 
 @media (max-width: 680px) {
   section { padding: 3.5rem 5%; }
-  nav { padding: 1rem 5%; }
-  nav ul { gap: 1rem; flex-wrap: nowrap; }
+  nav { 
+    padding: 1.2rem 8% 1.2rem 5%; /* Generates extra padding room layout footprint for secret icon node */
+  }
+  nav ul { 
+    gap: 1.2rem; 
+    flex-wrap: nowrap; 
+  }
 
   #hero { padding-top: 2.5rem; padding-bottom: 3.5rem; }
   .hero-inner { flex-direction: column-reverse; text-align: center; gap: 2rem; }
