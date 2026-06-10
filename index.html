@@ -20,11 +20,11 @@
     </ul>
   </nav>
 
-  <div class="theme-prompt-bar">
+  <div id="theme-prompt-note" class="theme-prompt-bar" role="button" aria-label="Toggle system color scheme" tabindex="0">
     <div class="theme-prompt-content">
-      <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle system color scheme">
+      <div class="theme-toggle-btn">
         <i class="fas fa-moon theme-icon-element"></i>
-      </button>
+      </div>
       <div class="theme-arrow"></div>
       <span class="theme-prompt-text">Press this to change theme!</span>
     </div>
@@ -184,7 +184,7 @@
 
 <script>
   // ── DARK/LIGHT INTERACTIVE ENGINE ──
-  const themeToggleBtn = document.getElementById('theme-toggle');
+  const themePromptNote = document.getElementById('theme-prompt-note');
 
   function getInitialTheme() {
     const savedTheme = localStorage.getItem('theme');
@@ -207,9 +207,19 @@
     }
   }
 
-  themeToggleBtn.addEventListener('click', () => {
+  // Click listener mapped to entire container node surface
+  themePromptNote.addEventListener('click', () => {
     const currentTheme = document.documentElement.getAttribute('data-theme');
     applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
+
+  // Support Keyboard Space/Enter for accessibility toggling
+  themePromptNote.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    }
   });
 
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
