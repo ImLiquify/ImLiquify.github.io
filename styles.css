@@ -185,9 +185,11 @@ nav ul li a:hover {
   opacity: 0.85;
   margin: 0 0.1rem;
   background-color: #8a5e3e; /* Ink-matched color scheme */
-  /* Direct SVG vector implementation to map clean looping lines without rough jagged edges */
-  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17c3-5 7-7 12-4M14 13l3 3-3 3"/></svg>') no-repeat center;
-  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 17c3-5 7-7 12-4M14 13l3 3-3 3"/></svg>') no-repeat center;
+  
+  /* Safe URL-encoded SVG vectors to avoid broken rendering across web browsers */
+  -webkit-mask: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2%2017c3-5%207-7%2012-4M14%2013l3%203-3%203%22%2F%3E%3C%2Fsvg%3E') no-repeat center;
+  mask: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M2%2017c3-5%207-7%2012-4M14%2013l3%203-3%203%22%2F%3E%3C%2Fsvg%3E') no-repeat center;
+  
   transition: background-color 0.3s ease;
 }
 
