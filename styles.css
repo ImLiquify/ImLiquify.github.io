@@ -178,23 +178,6 @@ nav ul li a:hover {
   color: #e9e6e0;
 }
 
-/* ─── HAND-DRAWN SKETCH ARROW ─── */
-.theme-arrow {
-  position: relative;
-  width: 24px;
-  height: 24px;
-  opacity: 0.9;
-  margin-left: 0.2rem;
-  background-color: #8a5e3e;
-  -webkit-mask: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22black%22%3E%3Cpath%20d%3D%22M21.8%2C6.5%20C21.5%2C5.3%2020.1%2C4%2018.8%2C4.3%20C17.2%2C4.7%2015.1%2C5.9%2013.9%2C6.9%20C13.2%2C7.5%2013.6%2C8.5%2014.5%2C8.6%20C15.2%2C8.7%2016.4%2C8.1%2017.3%2C7.9%20C15.8%2C10.5%2013.2%2C13.8%2011.4%2C16.5%20C9.6%2C19.1%208.7%2C21.2%209%2C22.5%20C9.2%2C23.2%2010.2%2C23.4%2010.5%2C22.6%20C11.3%2C20.6%2012.7%2C17.9%2014.8%2C15%20C17%2C11.9%2019.9%2C8.5%2021.2%2C6.9%20C21.4%2C7.8%2021.3%2C9.2%2021.7%2C10%20C22%2C10.8%2023.1%2C10.5%2023%2C9.6%20C22.9%2C8.4%2022.1%2C7.3%2021.8%2C6.5%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat center;
-  mask: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22black%22%3E%3Cpath%20d%3D%22M21.8%2C6.5%20C21.5%2C5.3%2020.1%2C4%2018.8%2C4.3%20C17.2%2C4.7%2015.1%2C5.9%2013.9%2C6.9%20C13.2%2C7.5%2013.6%2C8.5%2014.5%2C8.6%20C15.2%2C8.7%2016.4%2C8.1%2017.3%2C7.9%20C15.8%2C10.5%2013.2%2C13.8%2011.4%2C16.5%20C9.6%2C19.1%208.7%2C21.2%209%2C22.5%20C9.2%2C23.2%2010.2%2C23.4%2010.5%2C22.6%20C11.3%2C20.6%2012.7%2C17.9%2014.8%2C15%20C17%2C11.9%2019.9%2C8.5%2021.2%2C6.9%20C21.4%2C7.8%2021.3%2C9.2%2021.7%2C10%20C22%2C10.8%2023.1%2C10.5%2023%2C9.6%20C22.9%2C8.4%2022.1%2C7.3%2021.8%2C6.5%20Z%22%2F%3E%3C%2Fsvg%3E') no-repeat center;
-  transition: background-color 0.3s ease;
-}
-
-[data-theme="dark"] .theme-arrow {
-  background-color: #f3cbb0;
-}
-
 /* ─── HERO AREA ─── */
 #hero {
   min-height: 85vh;
@@ -262,7 +245,6 @@ nav ul li a:hover {
   font-weight: 300;
 }
 
-/* ─── PROMINENT BUTTON STYLE (MADE BIGGER) ─── */
 .btn {
   display: inline-block;
   padding: 0.95rem 2.4rem;
@@ -280,7 +262,6 @@ nav ul li a:hover {
   transform: translateY(-2px);
 }
 
-/* ─── HERO SOCIAL ICONS (MADE BIGGER CIRCLES) ─── */
 .hero-socials {
   display: flex;
   gap: 1.2rem;
@@ -580,7 +561,7 @@ section h2 {
   transform: scale(1.2);
 }
 
-/* ─── CONTACT FOOTER ICONS (MADE EVEN BIGGER) ─── */
+/* ─── CONTACT FOOTER ICONS ─── */
 .contact-inner { 
   text-align: center; 
 }
@@ -620,7 +601,7 @@ section h2 {
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.contact-icon-item:hover .contact-icon-circle {
+.contact-icon-item hover .contact-icon-circle {
   background-color: var(--text-main);
   border-color: var(--text-main);
   color: var(--bg-primary);
