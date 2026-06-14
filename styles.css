@@ -574,7 +574,7 @@ section h2 {
 
 .contact-icons {
   display: flex;
-  gap: 2.5rem;
+  gap: 2.2rem;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 0.5rem;
