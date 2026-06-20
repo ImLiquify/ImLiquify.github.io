@@ -3,673 +3,419 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admin · Mohamed Kaiser Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
+  <title id="page-title">Hey it's Mohamed Kaiser👋 | Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght=700&family=DM+Serif+Display&family=DM+Sans:wght=300;400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'DM Sans', sans-serif; background: #f5f3f0; color: #1a1a1a; font-size: 15px; }
-    a { text-decoration: none; color: inherit; }
-
-    /* ── LOGIN ── */
-    #login-screen {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #1a1a1a;
-    }
-    .login-box {
-      background: #fff;
-      padding: 2.5rem 2rem;
-      border-radius: 8px;
-      width: 340px;
-      text-align: center;
-    }
-    .login-box h1 { font-family: 'DM Serif Display', serif; font-size: 1.6rem; margin-bottom: 0.3rem; }
-    .login-box p { font-size: 0.85rem; color: #999; margin-bottom: 1.8rem; }
-    .login-box input {
-      width: 100%; padding: 0.75rem 1rem; border: 1px solid #e0dbd4;
-      border-radius: 4px; font-family: inherit; font-size: 0.95rem;
-      margin-bottom: 1rem; outline: none;
-    }
-    .login-box input:focus { border-color: #1a1a1a; }
-    .login-box button {
-      width: 100%; padding: 0.8rem; background: #1a1a1a; color: #fff;
-      border: none; border-radius: 4px; font-family: inherit; font-size: 0.95rem;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .login-box button:hover { background: #333; }
-    .login-error { color: #c0392b; font-size: 0.82rem; margin-top: 0.5rem; display: none; }
-
-    /* ── ADMIN SHELL ── */
-    #admin-shell { display: none; min-height: 100vh; }
-
-    .admin-nav {
-      background: #1a1a1a; color: #fff;
-      padding: 1rem 2rem;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .admin-nav h1 { font-family: 'DM Serif Display', serif; font-size: 1.2rem; }
-    .admin-nav-links { display: flex; gap: 1.5rem; align-items: center; }
-    .admin-nav-links a {
-      font-size: 0.85rem; color: #aaa; transition: color 0.2s; cursor: pointer;
-    }
-    .admin-nav-links a:hover, .admin-nav-links a.active { color: #fff; }
-    .logout-btn {
-      background: none; border: 1px solid #555; color: #aaa;
-      padding: 0.4rem 0.9rem; border-radius: 3px; font-size: 0.82rem;
-      cursor: pointer; font-family: inherit; transition: all 0.2s;
-    }
-    .logout-btn:hover { border-color: #fff; color: #fff; }
-
-    .admin-body { padding: 2rem; max-width: 1100px; margin: 0 auto; }
-
-    /* ── TABS ── */
-    .tab-pane { display: none; }
-    .tab-pane.active { display: block; }
-
-    /* ── CARDS ── */
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: 1.5rem; margin-bottom: 1.5rem;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-
-    /* ── FORM STYLES ── */
-    .form-card {
-      background: #fff; border-radius: 8px; padding: 1.8rem;
-      border: 1px solid #eee; margin-bottom: 1.5rem;
-    }
-    .form-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 1.2rem; color: #555; text-transform: uppercase; letter-spacing: 0.06em; font-size: 0.78rem; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
-    .form-row.single { grid-template-columns: 1fr; }
-    .form-row.triple { grid-template-columns: 1fr 1fr 1fr; }
-    label { display: block; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #888; margin-bottom: 0.35rem; }
-    input[type="text"], input[type="url"], input[type="password"], textarea, select {
-      width: 100%; padding: 0.65rem 0.85rem; border: 1px solid #e0dbd4;
-      border-radius: 4px; font-family: inherit; font-size: 0.92rem;
-      outline: none; transition: border-color 0.2s; background: #fff;
-    }
-    input:focus, textarea:focus, select:focus { border-color: #1a1a1a; }
-    textarea { resize: vertical; min-height: 90px; }
-
-    .btn-primary {
-      background: #1a1a1a; color: #fff; border: none;
-      padding: 0.7rem 1.5rem; border-radius: 4px; font-family: inherit;
-      font-size: 0.9rem; cursor: pointer; transition: background 0.2s;
-    }
-    .btn-primary:hover { background: #333; }
-    .btn-danger {
-      background: none; color: #c0392b; border: 1px solid #e8c0bb;
-      padding: 0.5rem 1rem; border-radius: 4px; font-family: inherit;
-      font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
-    }
-    .btn-danger:hover { background: #c0392b; color: #fff; border-color: #c0392b; }
-    .btn-secondary {
-      background: none; color: #555; border: 1px solid #ddd;
-      padding: 0.5rem 1rem; border-radius: 4px; font-family: inherit;
-      font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
-    }
-    .btn-secondary:hover { border-color: #1a1a1a; color: #1a1a1a; }
-
-    /* ── EXPORT LIVE CONTROLS ── */
-    .export-box {
-      background: #e8f4f8; border: 1px solid #bce1ec; border-radius: 8px;
-      padding: 1.5rem; margin-bottom: 2rem; display: flex; 
-      align-items: center; justify-content: space-between; gap: 1.5rem;
-    }
-    .export-info h4 { color: #1a4f63; font-size: 1rem; margin-bottom: 0.25rem; font-family: 'DM Sans', sans-serif; font-weight: 500; }
-    .export-info p { color: #4f7380; font-size: 0.85rem; line-height: 1.4; }
-    .btn-export { background: #2980b9; color: #fff; border: none; padding: 0.75rem 1.4rem; border-radius: 4px; font-family: inherit; font-size: 0.9rem; cursor: pointer; font-weight: 500; transition: background 0.2s; white-space: nowrap; }
-    .btn-export:hover { background: #216a9a; }
-
-    /* ── PROJECT LIST ── */
-    .project-list { display: flex; flex-direction: column; gap: 1rem; }
-    .project-list-item {
-      background: #fff; border: 1px solid #eee; border-radius: 8px;
-      padding: 1.2rem 1.5rem;
-      display: flex; align-items: center; gap: 1.2rem;
-    }
-    .project-list-thumb {
-      width: 72px; height: 52px; border-radius: 4px; object-fit: cover;
-      background: #f0ede8; flex-shrink: 0; display: flex; align-items: center;
-      justify-content: center; font-size: 1.5rem; overflow: hidden;
-    }
-    .project-list-thumb img { width: 100%; height: 100%; object-fit: cover; }
-    .project-list-info { flex: 1; }
-    .project-list-info h4 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.2rem; }
-    .project-list-info p { font-size: 0.8rem; color: #999; }
-    .project-list-actions { display: flex; gap: 0.5rem; flex-shrink: 0; }
-
-    /* ── HERO EDIT ── */
-    .hero-preview {
-      background: #1a1a1a; border-radius: 8px; padding: 2rem;
-      color: #fff; margin-bottom: 1.5rem;
-    }
-    .hero-preview p { font-size: 0.8rem; color: #888; margin-bottom: 0.3rem; letter-spacing: 0.08em; text-transform: uppercase; }
-    .hero-preview h2 { font-family: 'DM Serif Display', serif; font-size: 1.8rem; margin-bottom: 0.5rem; }
-    .hero-preview span { font-size: 0.9rem; color: #aaa; }
-
-    /* ── TOAST ── */
-    .toast {
-      position: fixed; bottom: 2rem; right: 2rem;
-      background: #1a1a1a; color: #fff;
-      padding: 0.8rem 1.4rem; border-radius: 4px;
-      font-size: 0.88rem; transform: translateY(80px);
-      transition: transform 0.3s ease; z-index: 9999;
-    }
-    .toast.show { transform: translateY(0); }
-
-    /* ── MODAL (edit project) ── */
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      display: none; align-items: center; justify-content: center; z-index: 500;
-    }
-    .modal-overlay.open { display: flex; }
-    .modal {
-      background: #fff; border-radius: 10px; width: 620px; max-height: 88vh;
-      overflow-y: auto; padding: 2rem;
-    }
-    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-    .modal-header h2 { font-family: 'DM Serif Display', serif; font-size: 1.3rem; }
-    .modal-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: #999; }
-    .modal-close:hover { color: #1a1a1a; }
-
-    /* ── TAG INPUT ── */
-    .tag-input-wrap { display: flex; flex-wrap: wrap; gap: 0.4rem; padding: 0.5rem; border: 1px solid #e0dbd4; border-radius: 4px; min-height: 42px; cursor: text; }
-    .tag-chip { background: #f0ede8; padding: 0.2rem 0.6rem; border-radius: 2px; font-size: 0.78rem; display: flex; align-items: center; gap: 0.3rem; }
-    .tag-chip button { background: none; border: none; cursor: pointer; font-size: 0.9rem; color: #999; padding: 0; line-height: 1; }
-    .tag-chip button:hover { color: #c0392b; }
-    .tag-text-input { border: none; outline: none; font-family: inherit; font-size: 0.88rem; min-width: 80px; flex: 1; }
-
-    /* ── SETTINGS ── */
-    .settings-section { margin-bottom: 2rem; }
-    .settings-section h3 { font-size: 0.78rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.08em; color: #888; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid #eee; }
-
-    @media (max-width: 680px) {
-      .form-row, .form-row.triple { grid-template-columns: 1fr; }
-      .admin-body { padding: 1rem; }
-      .modal { width: 95vw; padding: 1.2rem; }
-      .export-box { flex-direction: column; align-items: stretch; text-align: center; }
-    }
-  </style>
 </head>
 <body>
 
-<div id="login-screen">
-  <div class="login-box">
-    <h1>Admin Panel</h1>
-    <p>Mohamed Kaiser · Portfolio</p>
-    <input type="password" id="pw-input" placeholder="Enter password" />
-    <button onclick="tryLogin()">Sign In</button>
-    <p class="login-error" id="login-error">Wrong password. Try again.</p>
-  </div>
-</div>
-
-<div id="admin-shell">
-  <nav class="admin-nav">
-    <h1>⚙️ Portfolio Admin</h1>
-    <div class="admin-nav-links">
-      <a onclick="switchTab('projects')" id="tab-btn-projects" class="active">Projects</a>
-      <a onclick="switchTab('hero')" id="tab-btn-hero">Hero & About</a>
-      <a onclick="switchTab('settings')" id="tab-btn-settings">Settings</a>
-      <a href="index.html" target="_blank">View Site ↗</a>
-      <button class="logout-btn" onclick="logout()">Log out</button>
-    </div>
+  <nav>
+    <span class="nav-name" id="nav-name">Mohamed Kaiser</span>
+    <ul>
+      <li><a href="#about">About Me!</a></li>
+      <li><a href="#skills">My Skills</a></li>
+      <li><a href="#projects">My Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <div class="admin-body">
+  <div id="theme-prompt-note" class="theme-prompt-bar" role="button" aria-label="Toggle system color scheme" tabindex="0">
+    <div class="theme-prompt-content">
+      <div class="theme-toggle-btn">
+        <i class="fas fa-moon theme-icon-element"></i>
+      </div>
+      <span id="theme-prompt-text" class="theme-prompt-text">View in Dark Mode?</span>
+    </div>
+  </div>
 
-    <div class="tab-pane active" id="tab-projects">
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-tag" id="hero-tag">Diploma in ICT · APU</p>
+        <h1>Hi, I'm <span class="accent" id="hero-name">Mohamed Kaiser</span></h1>
+        <p class="hero-sub" id="hero-sub">ICT Student & Tech-Forward Problem Solver</p>
+        <a href="#projects" class="btn">View My Work</a>
+        <div class="hero-socials" id="hero-socials">
+          <a id="social-email" href="mailto:mohdkaiser1806@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+          <a id="social-github" href="https://github.com/ImLiquify" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+          <a id="social-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a id="social-wa" href="https://wa.me/60178710035" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/me.jpg" alt="Mohamed Kaiser" />
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="section-inner two-col">
+      <div>
+        <h2>About Me</h2>
+        <p id="about-p1">I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.</p>
+        <p id="about-p2">When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.</p>
+      </div>
+      <div class="about-details">
+        <div class="detail-item"><span class="label">University</span><span id="d-uni">Asia Pacific University (APU)</span></div>
+        <div class="detail-item"><span class="label">Programme</span><span id="d-prog">Diploma in ICT (General)</span></div>
+        <div class="detail-item"><span class="label">CGPA</span><span id="d-cgpa">3.44 / 4.00</span></div>
+        <div class="detail-item"><span class="label">Location</span><span id="d-loc">Kuala Lumpur, Malaysia</span></div>
+        <div class="detail-item"><span class="label">Email</span><span id="d-email">mohdkaiser1806@gmail.com</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="bg-light">
+    <div class="section-inner">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card"><span class="skill-icon">🤖</span><h3>AI-Assisted Dev</h3><p>Windsurf, Cascade, Prompt Engineering (basics)</p></div>
+        <div class="skill-card"><span class="skill-icon">🌐</span><h3>Automation & Web</h3><p>AppScript, PHP, MySQL, JavaScript, HTML, CSS</p></div>
+        <div class="skill-card"><span class="skill-icon">💻</span><h3>Programming</h3><p>Python, Java (OOP), C++, HTML5, CSS3</p></div>
+        <div class="skill-card"><span class="skill-icon">🛠️</span><h3>IoT & Hardware</h3><p>Arduino, Embedded C++, Sensor Integration</p></div>
+        <div class="skill-card"><span class="skill-icon">🏢</span><h3>Design & 3D</h3><p>SketchUp 3D, Enscape 3D, Figma</p></div>
+        <div class="skill-card"><span class="skill-icon">🔃</span><h3>More to Come</h3><p>Actively Learning...</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-inner">
+      <h2>Projects</h2>
+      <p class="section-sub">Swipe or click any project card to look through my work</p>
       
-      <div class="export-box">
-        <div class="export-info">
-          <h4>🚀 Ready to push changes live?</h4>
-          <p>Click Export to download your updated data file, place it in your local folder, and commit to GitHub to automatically update your live site.</p>
-        </div>
-        <button class="btn-export" onclick="exportPortfolioData()"><i class="fas fa-file-download"></i> Export portfolio-data.json</button>
+      <div class="slider-container">
+        <div class="product-grid" id="product-grid"></div>
+        <div class="slider-dots" id="slider-dots"></div>
       </div>
-
-      <div class="section-title">
-        Projects
-        <button class="btn-primary" onclick="openAddModal()">+ Add Project</button>
-      </div>
-      <div class="project-list" id="project-list"></div>
     </div>
+  </section>
 
-    <div class="tab-pane" id="tab-hero">
-      <div class="section-title">Hero & About</div>
-
-      <div class="hero-preview" id="hero-preview">
-        <p>Preview</p>
-        <h2 id="preview-name">Mohamed Kaiser</h2>
-        <span id="preview-sub">ICT Student & Tech-Forward Problem Solver</span>
-      </div>
-
-      <div class="form-card">
-        <h3>Hero Section</h3>
-        <div class="form-row">
-          <div>
-            <label>Your Name</label>
-            <input type="text" id="h-name" placeholder="Mohamed Kaiser" />
-          </div>
-          <div>
-            <label>Tag Line (small text above name)</label>
-            <input type="text" id="h-tag" placeholder="Diploma in ICT · APU" />
+  <section id="education" class="bg-light">
+    <div class="section-inner">
+      <h2>Education</h2>
+      <div class="edu-list">
+        <div class="edu-item">
+          <div class="edu-meta">2024 – Nov 2026</div>
+          <div class="edu-body">
+            <h3>Diploma in Information & Communication Technology</h3>
+            <p>Asia Pacific University (APU), Kuala Lumpur</p>
+            <p class="edu-note">CGPA: 3.44 / 4.00 · A+ in AI, Mathematics, Operating Systems, Algebra</p>
           </div>
         </div>
-        <div class="form-row single">
-          <div>
-            <label>Subtitle</label>
-            <input type="text" id="h-sub" placeholder="ICT Student & Tech-Forward Problem Solver" />
+        <div class="edu-item">
+          <div class="edu-meta">2023</div>
+          <div class="edu-body">
+            <h3>Sijil Pelajaran Malaysia (SPM)</h3>
+            <p>A in Mathematics · A in English · A- in Computer Science</p>
+            <p class="edu-note">CEFR C1 English Proficiency · Score: 193</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-meta">2024</div>
+          <div class="edu-body">
+            <h3>CEFR C1 English Proficiency</h3>
+            <p>Distinction · Score: 193</p>
           </div>
         </div>
       </div>
-
-      <div class="form-card">
-        <h3>About Me</h3>
-        <div class="form-row single">
-          <div>
-            <label>Paragraph 1</label>
-            <textarea id="h-about1"></textarea>
-          </div>
-        </div>
-        <div class="form-row single">
-          <div>
-            <label>Paragraph 2</label>
-            <textarea id="h-about2"></textarea>
-          </div>
-        </div>
-      </div>
-
-      <div class="form-card">
-        <h3>Details (right column)</h3>
-        <div class="form-row">
-          <div><label>University</label><input type="text" id="h-uni" /></div>
-          <div><label>Programme</label><input type="text" id="h-prog" /></div>
-        </div>
-        <div class="form-row">
-          <div><label>CGPA</label><input type="text" id="h-cgpa" /></div>
-          <div><label>Location</label><input type="text" id="h-loc" /></div>
-        </div>
-        <div class="form-row single">
-          <div><label>Email</label><input type="text" id="h-email" /></div>
-        </div>
-      </div>
-
-      <button class="btn-primary" onclick="saveHero()">Save Changes</button>
     </div>
+  </section>
 
-    <div class="tab-pane" id="tab-settings">
-      <div class="section-title">Settings</div>
-
-      <div class="form-card">
-        <div class="settings-section">
-          <h3>Social Links</h3>
-          <div class="form-row">
-            <div><label>Email</label><input type="text" id="s-email" /></div>
-            <div><label>GitHub URL</label><input type="url" id="s-github" /></div>
-          </div>
-          <div class="form-row">
-            <div><label>LinkedIn URL</label><input type="url" id="s-linkedin" /></div>
-            <div><label>WhatsApp Number (with country code, no +)</label><input type="text" id="s-wa" /></div>
-          </div>
-        </div>
-        <div class="settings-section">
-          <h3>Change Password</h3>
-          <div class="form-row">
-            <div><label>New Password</label><input type="password" id="s-newpw" placeholder="Leave blank to keep current" /></div>
-            <div><label>Confirm Password</label><input type="password" id="s-confirmpw" /></div>
-          </div>
-        </div>
-        <button class="btn-primary" onclick="saveSettings()">Save Settings</button>
+  <section id="cert">
+    <div class="section-inner">
+      <h2>Certifications</h2>
+      <div class="edu-list">
+        <div class="edu-item"><div class="edu-meta">Dell</div><div class="edu-body"><h3>DELL Tech Talk: LLMs & Machine Learning</h3><p>Dell Technologies</p></div></div>
+        <div class="edu-item"><div class="edu-meta">APU</div><div class="edu-body"><h3>Smart & Adaptive AI Agents at the Edge</h3><p>Asia Pacific University</p></div></div>
+        <div class="edu-item"><div class="edu-meta">UM</div><div class="edu-body"><h3>Practical AI Workshop</h3><p>UM Startup Ecosystem</p></div></div>
       </div>
     </div>
+  </section>
 
-  </div>
-</div>
-
-<div class="modal-overlay" id="project-modal">
-  <div class="modal">
-    <div class="modal-header">
-      <h2 id="modal-title">Add Project</h2>
-      <button class="modal-close" onclick="closeModal()">×</button>
-    </div>
-
-    <input type="hidden" id="m-id" />
-
-    <div class="form-row">
-      <div>
-        <label>Project Title</label>
-        <input type="text" id="m-title" placeholder="Fix n Flip" />
-      </div>
-      <div>
-        <label>Date / Period</label>
-        <input type="text" id="m-date" placeholder="Jan 2026 – Present" />
+  <section id="contact" class="bg-light">
+    <div class="section-inner contact-inner">
+      <h2>Get In Touch</h2>
+      <p>I'm open to Internship Opportunities and Collaboration.</p>
+      <div class="contact-icons" id="contact-icons">
+        <a id="c-email" href="mailto:mohdkaiser1806@gmail.com" class="contact-icon-item" title="Email">
+          <div class="contact-icon-circle"><i class="fas fa-envelope"></i></div><span>Email</span>
+        </a>
+        <a id="c-github" href="https://github.com/ImLiquify" target="_blank" class="contact-icon-item" title="GitHub">
+          <div class="contact-icon-circle"><i class="fab fa-github"></i></div><span>GitHub</span>
+        </a>
+        <a id="c-linkedin" href="https://www.linkedin.com/in/mohamed-kaiser-04093532b/" target="_blank" class="contact-icon-item" title="LinkedIn">
+          <div class="contact-icon-circle"><i class="fab fa-linkedin-in"></i></div><span>LinkedIn</span>
+        </a>
+        <a id="c-wa" href="https://wa.me/60178710035" target="_blank" class="contact-icon-item" title="WhatsApp">
+          <div class="contact-icon-circle"><i class="fab fa-whatsapp"></i></div><span>WhatsApp</span>
+        </a>
       </div>
     </div>
+  </section>
 
-    <div class="form-row single" style="margin-bottom:1rem">
-      <div>
-        <label>Short Description (shown on card)</label>
-        <textarea id="m-short" style="min-height:70px" placeholder="One or two sentences for the card..."></textarea>
+  <footer>
+    <p>© 2026 <span id="footer-name">Mohamed Kaiser</span> · Built with HTML & CSS</p>
+  </footer>
+
+  <div class="popup-overlay" id="popup-overlay" onclick="closePopup(event)">
+    <div class="popup">
+      <button class="popup-close" onclick="closePopupDirect()">×</button>
+      
+      <div class="popup-carousel-container" id="popup-carousel-container">
+        <button class="carousel-arrow prev" id="carousel-arrow-prev" onclick="moveCarousel(-1)">&#10094;</button>
+        <button class="carousel-arrow next" id="carousel-arrow-next" onclick="moveCarousel(1)">&#10095;</button>
+        
+        <div class="popup-imgs" id="popup-imgs"></div>
+        <div class="popup-img-dots" id="popup-img-dots"></div>
       </div>
-    </div>
 
-    <div class="form-row single" style="margin-bottom:1rem">
-      <div>
-        <label>Full Description (shown in popup)</label>
-        <textarea id="m-long" style="min-height:120px" placeholder="Full project description for the popup..."></textarea>
+      <div class="popup-content">
+        <div class="popup-meta" id="popup-meta"></div>
+        <h2 class="popup-title" id="popup-title"></h2>
+        <p class="popup-desc" id="popup-desc"></p>
+        <div class="project-tags" id="popup-tags"></div>
+        <a class="popup-github-btn" id="popup-github-btn" href="#" target="_blank">View on GitHub →</a>
       </div>
-    </div>
-
-    <div style="margin-bottom:1rem">
-      <label>Tags (press Enter or comma to add)</label>
-      <div class="tag-input-wrap" id="tag-wrap" onclick="focusTagInput()">
-        <input class="tag-text-input" id="tag-input" placeholder="e.g. PHP" />
-      </div>
-    </div>
-
-    <div class="form-row" style="margin-bottom:1rem">
-      <div>
-        <label>GitHub Link (leave blank if none)</label>
-        <input type="url" id="m-github" placeholder="https://github.com/ImLiquify/..." />
-      </div>
-      <div>
-        <label>Main Image filename (in /images/)</label>
-        <input type="text" id="m-img" placeholder="fixnflip.jpg" />
-      </div>
-    </div>
-
-    <div style="margin-bottom:1.5rem">
-      <label>Popup Images (filenames, one per line)</label>
-      <textarea id="m-imgs" style="min-height:70px" placeholder="fixnflip.jpg&#10;fixnflip2.jpg"></textarea>
-    </div>
-
-    <div style="display:flex; gap:0.8rem; justify-content:flex-end;">
-      <button class="btn-secondary" onclick="closeModal()">Cancel</button>
-      <button class="btn-primary" onclick="saveProject()">Save Project</button>
     </div>
   </div>
-</div>
-
-<div class="toast" id="toast"></div>
 
 <script>
-  // ── DEFAULT DATA ──
-  const DEFAULT_PASSWORD = 'kaiser123';
-  const DEFAULT_PROJECTS = [
-    { id: 1, title: 'Fix n Flip', date: 'Jan 2026 – Present', short: 'E-waste marketplace for APU students to buy, sell and repair devices. Role-based access with full lifecycle tracking.', long: 'Led my team to build a website for APU students to buy and sell devices at lower prices instead of disposing them. Includes role-based access for Admins, Technicians, Clerks, and Users with full device lifecycle tracking. Built a 31-table relational database and 15+ dynamic pages.', tags: ['PHP','MySQL','JavaScript','HTML','CSS'], github: 'https://github.com/ImLiquify', img: 'fixnflip.jpg', imgs: ['fixnflip.jpg','fixnflip2.jpg'] },
-    { id: 2, title: 'Automated Smart Greenhouse', date: 'Nov 2025 – Present', short: 'IoT system with Arduino & ESP32. Automates irrigation and lighting based on soil moisture and crop type.', long: 'Built an IoT monitoring and control system for a model greenhouse using Arduino and ESP32. Automates irrigation based on soil moisture readings and adjusts LED lighting based on crop type. Paired with a web dashboard for remote monitoring. Includes water pump burn-out prevention.', tags: ['Arduino C++','HTML','CSS'], github: 'https://github.com/ImLiquify', img: 'greenhouse.jpg', imgs: ['greenhouse.jpg','greenhouse2.jpg'] },
-    { id: 3, title: 'Enhanced TaoBao (Figma)', date: 'Jun 2025 – Present', short: 'Full UI/UX redesign of TaoBao. Cleaner layout, better hierarchy, focused on converting buyers.', long: 'Conducted user research, competitor analysis, and information architecture. Designed user flows and multiple high and low fidelity mockups. Developed a complete advanced website prototype in Figma focused on reducing clutter and improving purchasing conversion.', tags: ['Figma','UI/UX'], github: '', img: 'taobao.jpg', imgs: ['taobao.jpg','taobao2.jpg'] },
-    { id: 4, title: 'Hospital Management System', date: 'Jul 2025 – Present', short: 'Desktop app in Java OOP to manage Nurses, Doctors and Patients with login access control.', long: 'Built a sample desktop app using NetBeans UI to demonstrate core OOP principles. Implemented Admin features and login functions. Applies OOP principles including Encapsulation, Inheritance, and modular structure.', tags: ['Java OOP','NetBeans'], github: '', img: '', imgs: [] },
-    { id: 5, title: 'Restaurant Market List Automation', date: '2024 – 2025', short: 'Google Sheets tracker for my family\'s restaurant with AppScript automations and year-end email reports.', long: 'Built a shared Google Sheets procurement tracker for my family\'s restaurant. Added multi-user access so different staff can update stock lists. AppScript automations run monthly: migrating completed data to archive, auto-generating fresh working sheets. Year-end summary email sent automatically to the owner.', tags: ['Google Sheets','AppScript','JavaScript'], github: '', img: 'restaurant.jpg', imgs: ['restaurant.jpg','restaurant2.jpg'] },
-    { id: 6, title: '3D Restaurant Architectural Design', date: '2025', short: 'Full spatial layout and interior design using SketchUp 3D with photorealistic Enscape renders.', long: 'Designed the full spatial layout and interior architecture of my parents\' restaurant concept using SketchUp 3D. Produced photorealistic renders and walkthroughs using Enscape for client review before renovation. Helped save money by allowing design changes before construction began.', tags: ['SketchUp 3D','Enscape'], github: '', img: 'restaurant3d.jpg', imgs: ['restaurant3d.jpg','restaurant3d2.jpg'] },
-    { id: 7, title: 'Shell STEM Innovation Challenges', date: '2019 – 2022', short: 'Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car.', long: 'Led student teams across two years of national STEM competitions, taking projects from concept to working prototype under real competition conditions. Built four hardware systems: a Salt-Water Electrolysis Electric Car, an Automated Pool Energy Recovery System, a Guard Sleep-Monitoring Alert, and an Automatic Overflow & Irrigation Pump Controller.', tags: ['Arduino C++','Hardware'], github: '', img: '', imgs: [] }
-  ];
+  // ── DARK/LIGHT INTERACTIVE ENGINE ──
+  const themePromptNote = document.getElementById('theme-prompt-note');
+  const themePromptText = document.getElementById('theme-prompt-text');
 
-  const DEFAULT_HERO = {
-    name: 'Mohamed Kaiser', tag: 'Diploma in ICT · APU',
-    sub: 'ICT Student & Tech-Forward Problem Solver',
-    about1: "I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.",
-    about2: "When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.",
-    uni: 'Asia Pacific University (APU)', prog: 'Diploma in ICT (General)',
-    cgpa: '3.44 / 4.00', loc: 'Kuala Lumpur, Malaysia', email: 'mohdkaiser1806@gmail.com'
-  };
+  function getInitialTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) return savedTheme;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
 
-  const DEFAULT_SETTINGS = {
-    email: 'mohdkaiser1806@gmail.com',
-    github: 'https://github.com/ImLiquify',
-    linkedin: 'https://www.linkedin.com/in/mohamed-kaiser-04093532b/',
-    wa: '60178710035'
-  };
-
-  // ── AUTOLOAD LIVE SAVED DATA SO ADMIN SEES LATEST ──
-  async function loadExternalDataIfPresent() {
-    try {
-      const response = await fetch('portfolio-data.json');
-      if (response.ok) {
-        const data = await response.json();
-        if (data.projects && !localStorage.getItem('projects')) setData('projects', data.projects);
-        if (data.hero && !localStorage.getItem('hero')) setData('hero', data.hero);
-        if (data.settings && !localStorage.getItem('settings')) setData('settings', data.settings);
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+    
+    const iconEl = document.querySelector('.theme-icon-element');
+    if (iconEl) {
+      if (theme === 'dark') {
+        iconEl.className = 'fas fa-sun theme-icon-element';
+        themePromptText.textContent = 'View in Light Mode?';
+      } else {
+        iconEl.className = 'fas fa-moon theme-icon-element';
+        themePromptText.textContent = 'View in Dark Mode?';
       }
-    } catch (e) {
-      console.log("No external file found yet, using current working memory.");
     }
   }
 
-  // ── STORAGE HELPERS ──
-  function getData(key, def) {
-    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; }
-    catch(e) { return def; }
-  }
-  function setData(key, val) { localStorage.setItem(key, JSON.stringify(val)); }
+  themePromptNote.addEventListener('click', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme');
+    applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  });
 
-  // ── LOGIN ──
-  async function tryLogin() {
-    const pw = document.getElementById('pw-input').value;
-    const stored = localStorage.getItem('admin_pw') || DEFAULT_PASSWORD;
-    if (pw === stored) {
-      await loadExternalDataIfPresent();
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('admin-shell').style.display = 'block';
-      initAdmin();
-    } else {
-      document.getElementById('login-error').style.display = 'block';
-    }
-  }
-  document.getElementById('pw-input').addEventListener('keydown', e => { if(e.key==='Enter') tryLogin(); });
-
-  function logout() {
-    document.getElementById('admin-shell').style.display = 'none';
-    document.getElementById('login-screen').style.display = 'flex';
-    document.getElementById('pw-input').value = '';
-  }
-
-  // ── TABS ──
-  function switchTab(name) {
-    document.querySelectorAll('.tab-pane').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.admin-nav-links a[id^="tab-btn"]').forEach(a => a.classList.remove('active'));
-    document.getElementById('tab-'+name).classList.add('active');
-    document.getElementById('tab-btn-'+name).classList.add('active');
-  }
-
-  // ── INIT ──
-  function initAdmin() {
-    renderProjectList();
-    loadHeroForm();
-    loadSettingsForm();
-  }
-
-  // ── PROJECTS ──
-  function getProjects() { return getData('projects', DEFAULT_PROJECTS); }
-  function saveProjects(p) { setData('projects', p); }
-
-  function renderProjectList() {
-    const projects = getProjects();
-    const list = document.getElementById('project-list');
-    list.innerHTML = projects.map(p => `
-      <div class="project-list-item">
-        <div class="project-list-thumb">
-          ${p.img ? `<img src="images/${p.img}" onerror="this.style.display='none'" />` : '📁'}
-        </div>
-        <div class="project-list-info">
-          <h4>${p.title}</h4>
-          <p>${p.date} · ${p.tags.slice(0,3).join(', ')}${p.tags.length>3?'…':''} ${p.github ? '· <span style="color:#2ecc71">GitHub ✓</span>' : '· <span style="color:#e67e22">No GitHub</span>'}</p>
-        </div>
-        <div class="project-list-actions">
-          <button class="btn-secondary" onclick="openEditModal(${p.id})">Edit</button>
-          <button class="btn-danger" onclick="deleteProject(${p.id})">Delete</button>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  // ── TAG INPUT ──
-  let currentTags = [];
-  function focusTagInput() { document.getElementById('tag-input').focus(); }
-  function renderTags() {
-    const wrap = document.getElementById('tag-wrap');
-    const input = document.getElementById('tag-input');
-    wrap.innerHTML = '';
-    currentTags.forEach((t,i) => {
-      const chip = document.createElement('div');
-      chip.className = 'tag-chip';
-      chip.innerHTML = `${t}<button onclick="removeTag(${i})">×</button>`;
-      wrap.appendChild(chip);
-    });
-    wrap.appendChild(input);
-    input.focus();
-  }
-  function removeTag(i) { currentTags.splice(i,1); renderTags(); }
-  document.addEventListener('keydown', function(e) {
-    const input = document.getElementById('tag-input');
-    if (document.activeElement !== input) return;
-    if ((e.key === 'Enter' || e.key === ',') && input.value.trim()) {
+  themePromptNote.addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
       e.preventDefault();
-      currentTags.push(input.value.trim().replace(',',''));
-      input.value = '';
-      renderTags();
-    }
-    if (e.key === 'Backspace' && !input.value && currentTags.length) {
-      currentTags.pop(); renderTags();
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
     }
   });
 
-  // ── MODAL ──
-  function openAddModal() {
-    currentTags = [];
-    document.getElementById('modal-title').textContent = 'Add Project';
-    document.getElementById('m-id').value = '';
-    ['m-title','m-date','m-short','m-long','m-github','m-img','m-imgs'].forEach(id => document.getElementById(id).value = '');
-    renderTags();
-    document.getElementById('project-modal').classList.add('open');
-  }
-
-  function openEditModal(id) {
-    const p = getProjects().find(x => x.id === id);
-    if (!p) return;
-    currentTags = [...p.tags];
-    document.getElementById('modal-title').textContent = 'Edit Project';
-    document.getElementById('m-id').value = p.id;
-    document.getElementById('m-title').value = p.title;
-    document.getElementById('m-date').value = p.date;
-    document.getElementById('m-short').value = p.short;
-    document.getElementById('m-long').value = p.long;
-    document.getElementById('m-github').value = p.github || '';
-    document.getElementById('m-img').value = p.img || '';
-    document.getElementById('m-imgs').value = (p.imgs || []).join('\n');
-    renderTags();
-    document.getElementById('project-modal').classList.add('open');
-  }
-
-  function closeModal() { document.getElementById('project-modal').classList.remove('open'); }
-
-  function saveProject() {
-    const id = document.getElementById('m-id').value;
-    const proj = {
-      id: id ? parseInt(id) : Date.now(),
-      title: document.getElementById('m-title').value.trim(),
-      date: document.getElementById('m-date').value.trim(),
-      short: document.getElementById('m-short').value.trim(),
-      long: document.getElementById('m-long').value.trim(),
-      tags: currentTags,
-      github: document.getElementById('m-github').value.trim(),
-      img: document.getElementById('m-img').value.trim(),
-      imgs: document.getElementById('m-imgs').value.trim().split('\n').filter(Boolean)
-    };
-    if (!proj.title) { toast('Please enter a project title'); return; }
-    let projects = getProjects();
-    if (id) { projects = projects.map(p => p.id === proj.id ? proj : p); }
-    else { projects.push(proj); }
-    saveProjects(projects);
-    renderProjectList();
-    closeModal();
-    toast('Project saved locally! Remember to export changes ✓');
-  }
-
-  function deleteProject(id) {
-    if (!confirm('Delete this project?')) return;
-    saveProjects(getProjects().filter(p => p.id !== id));
-    renderProjectList();
-    toast('Project deleted');
-  }
-
-  // ── HERO ──
-  function loadHeroForm() {
-    const h = getData('hero', DEFAULT_HERO);
-    ['name','tag','sub','about1','about2','uni','prog','cgpa','loc','email'].forEach(k => {
-      const el = document.getElementById('h-'+k);
-      if (el) el.value = h[k] || '';
-    });
-    document.getElementById('preview-name').textContent = h.name;
-    document.getElementById('preview-sub').textContent = h.sub;
-  }
-
-  function saveHero() {
-    const h = {};
-    ['name','tag','sub','about1','about2','uni','prog','cgpa','loc','email'].forEach(k => {
-      const el = document.getElementById('h-'+k);
-      if (el) h[k] = el.value.trim();
-    });
-    setData('hero', h);
-    document.getElementById('preview-name').textContent = h.name;
-    document.getElementById('preview-sub').textContent = h.sub;
-    toast('Hero section saved locally! Remember to export changes ✓');
-  }
-
-  // ── SETTINGS ──
-  function loadSettingsForm() {
-    const s = getData('settings', DEFAULT_SETTINGS);
-    document.getElementById('s-email').value = s.email || '';
-    document.getElementById('s-github').value = s.github || '';
-    document.getElementById('s-linkedin').value = s.linkedin || '';
-    document.getElementById('s-wa').value = s.wa || '';
-  }
-
-  function saveSettings() {
-    const newpw = document.getElementById('s-newpw').value;
-    const confirmpw = document.getElementById('s-confirmpw').value;
-    if (newpw) {
-      if (newpw !== confirmpw) { toast('Passwords do not match'); return; }
-      localStorage.setItem('admin_pw', newpw);
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+    if (!localStorage.getItem('theme')) {
+      applyTheme(e.matches ? 'dark' : 'light');
     }
-    setData('settings', {
-      email: document.getElementById('s-email').value.trim(),
-      github: document.getElementById('s-github').value.trim(),
-      linkedin: document.getElementById('s-linkedin').value.trim(),
-      wa: document.getElementById('s-wa').value.trim()
+  });
+
+  applyTheme(getInitialTheme());
+
+  const DEFAULT_PROJECTS = [
+    { id:1, title:'Fix n Flip', date:'Jan 2026 – Present', short:'E-waste marketplace for APU students to buy, sell and repair devices. Role-based access with full lifecycle tracking.', long:'Led my team to build a website for APU students to buy and sell devices at lower prices. Includes role-based access for Admins, Technicians, Clerks, and Users with full device lifecycle tracking. Built a 31-table relational database and 15+ dynamic pages.', tags:['PHP','MySQL','JavaScript','HTML','CSS'], github:'https://github.com/ImLiquify', img:'fixnflip.jpg', imgs:['fixnflip.jpg','fixnflip2.jpg'] },
+    { id:2, title:'Automated Smart Greenhouse', date:'Nov 2025 – Present', short:'IoT system with Arduino & ESP32. Automates irrigation and lighting based on soil and crop type.', long:'Built an IoT monitoring system using Arduino and ESP32 with a web dashboard. Automates irrigation based on soil moisture and adjusts LED lighting by crop type. Includes water pump burn-out prevention.', tags:['Arduino C++','HTML','CSS'], github:'https://github.com/ImLiquify', img:'greenhouse.jpg', imgs:['greenhouse.jpg','greenhouse2.jpg'] },
+    { id:3, title:'Enhanced TaoBao (Figma)', date:'Jun 2025 – Present', short:'Full UI/UX redesign of TaoBao. Cleaner layout, better hierarchy, focused on converting buyers.', long:'Conducted user research, competitor analysis, and information architecture. Designed user flows and multiple high and low fidelity mockups. Developed a complete advanced website prototype in Figma focused on reducing clutter and improving purchasing conversion.', tags:['Figma','UI/UX'], github:'', img:'taobao.jpg', imgs:['taobao.jpg','taobao2.jpg'] },
+    { id:4, title:'Hospital Management System', date:'Jul 2025 – Present', short:'Desktop app in Java OOP to manage Nurses, Doctors and Patients with login access control.', long:'Built a desktop app using NetBeans UI to demonstrate core OOP principles. Implemented Admin features and login functions. Applies Encapsulation, Inheritance, and modular structure.', tags:['Java OOP','NetBeans'], github:'https://github.com/ImLiquify/Hospital-Management-System', img:'', imgs:[] },
+    { id:5, title:'Restaurant Market List Automation', date:'2024 – 2025', short:"Google Sheets tracker for my family's restaurant with AppScript automations and auto email reports.", long:"Built a shared Google Sheets procurement tracker for my family's restaurant. AppScript automations run monthly: archiving data, auto-generating fresh sheets, and sending a year-end summary email to the owner.", tags:['Google Sheets','AppScript','JavaScript'], github:'', img:'restaurant.jpg', imgs:['restaurant.jpg','restaurant2.jpg'] },
+    { id:6, title:'3D Restaurant Architectural Design', date:'2025', short:"Full spatial layout and interior design using SketchUp 3D with photorealistic Enscape renders.", long:"Designed the full spatial layout and interior of my parents' restaurant pre-renovation using SketchUp 3D. Produced photorealistic renders and walkthroughs using Enscape for review before construction.", tags:['SketchUp 3D','Enscape'], github:'', img:'restaurant3d.jpg', imgs:['restaurant3d.jpg','restaurant3d2.jpg'] },
+    { id:7, title:'Shell STEM Innovation Challenges', date:'2019 – 2022', short:'Led teams in national STEM competitions. Built 4 hardware systems including a Salt-Water Powered Car.', long:'Led student teams across two years of national STEM competitions. Built four hardware systems: a Salt-Water Electrolysis Electric Car, an Automated Pool Energy Recovery System, a Guard Sleep-Monitoring Alert, and an Automatic Overflow & Irrigation Pump Controller.', tags:['Arduino C++','Hardware'], github:'', img:'', imgs:[] }
+  ];
+
+  const DEFAULT_HERO = { name:'Mohamed Kaiser', tag:'Diploma in ICT · APU', sub:'ICT Student & Tech-Forward Problem Solver', about1:"I'm a student currently pursuing a Diploma in ICT (General) at Asia Pacific University (APU), Malaysia. I enjoy learning new technologies, building projects to solve problems, working with technology and love computers.", about2:"When I'm not studying, I like playing games, finding solutions to problems, and trying out new things that help broaden my knowledge. I'm actively looking for internship opportunities to grow my skills.", uni:'Asia Pacific University (APU)', prog:'Diploma in ICT (General)', cgpa:'3.44 / 4.00', loc:'Kuala Lumpur, Malaysia', email:'mohdkaiser1806@gmail.com' };
+  const DEFAULT_SETTINGS = { email:'mohdkaiser1806@gmail.com', github:'https://github.com/ImLiquify', linkedin:'https://www.linkedin.com/in/mohamed-kaiser-04093532b/', wa:'60178710035' };
+
+  function getData(key, def) { try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : def; } catch(e) { return def; } }
+
+  window.loadedProjectsInstance = DEFAULT_PROJECTS;
+
+  async function loadPortfolioEngine() {
+    let projects = DEFAULT_PROJECTS;
+    let hero = DEFAULT_HERO;
+    let settings = DEFAULT_SETTINGS;
+
+    try {
+      const response = await fetch('portfolio-data.json');
+      if (response.ok) {
+        const externalData = await response.json();
+        if (externalData.projects) projects = externalData.projects;
+        if (externalData.hero) hero = externalData.hero;
+        if (externalData.settings) settings = externalData.settings;
+      }
+    } catch (e) {
+      console.log("Using browser local storage backups.");
+    }
+
+    if (localStorage.getItem('hero')) hero = JSON.parse(localStorage.getItem('hero'));
+    if (localStorage.getItem('settings')) settings = JSON.parse(localStorage.getItem('settings'));
+    if (localStorage.getItem('projects')) projects = JSON.parse(localStorage.getItem('projects'));
+
+    window.loadedProjectsInstance = projects;
+
+    document.getElementById('hero-name').textContent = hero.name;
+    document.getElementById('hero-tag').textContent = hero.tag;
+    document.getElementById('hero-sub').textContent = hero.sub;
+    document.getElementById('nav-name').textContent = hero.name;
+    document.getElementById('footer-name').textContent = hero.name;
+    document.getElementById('about-p1').textContent = hero.about1;
+    document.getElementById('about-p2').textContent = hero.about2;
+    document.getElementById('d-uni').textContent = hero.uni;
+    document.getElementById('d-prog').textContent = hero.prog;
+    document.getElementById('d-cgpa').textContent = hero.cgpa;
+    document.getElementById('d-loc').textContent = hero.loc;
+    document.getElementById('d-email').textContent = hero.email;
+
+    document.getElementById('social-email').href = 'mailto:' + settings.email;
+    document.getElementById('social-github').href = settings.github;
+    document.getElementById('social-linkedin').href = settings.linkedin;
+    document.getElementById('social-wa').href = 'https://wa.me/' + settings.wa;
+    document.getElementById('c-email').href = 'mailto:' + settings.email;
+    document.getElementById('c-github').href = settings.github;
+    document.getElementById('c-linkedin').href = settings.linkedin;
+    document.getElementById('c-wa').href = 'https://wa.me/' + settings.wa;
+
+    renderGrid(projects);
+  }
+
+  function renderGrid(projectsData) {
+    const grid = document.getElementById('product-grid');
+    grid.innerHTML = projectsData.map((p, index) => {
+      const hasImg = p.img && p.img.trim();
+      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+      const imgHtml = hasImg
+        ? `<div class="product-img"><img src="images/${p.img}" alt="${p.title}" /><div class="product-overlay"></div></div>`
+        : `<div class="product-img-placeholder"></div>`;
+
+      return `
+        <div class="product-card" data-index="${index}" onclick="handleCardClick(${p.id})">
+          ${imgHtml}
+          <div class="product-info">
+            <div class="product-meta">${p.date}</div>
+            <h3>${p.title}</h3>
+            <p>${p.short}</p>
+            <div class="project-tags">${tags}</div>
+          </div>
+        </div>`;
+    }).join('');
+
+    const dotsContainer = document.getElementById('slider-dots');
+    dotsContainer.innerHTML = projectsData.map((_, idx) => `
+      <button class="dot ${idx === 0 ? 'active' : ''}" onclick="scrollToCard(${idx})"></button>
+    `).join('');
+  }
+
+  const grid = document.getElementById('product-grid');
+  const dotsContainer = document.getElementById('slider-dots');
+
+  function scrollToCard(idx) {
+    const cards = grid.querySelectorAll('.product-card');
+    if(cards[idx]) cards[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  grid.addEventListener('scroll', () => {
+    const cards = grid.querySelectorAll('.product-card');
+    if(!cards.length) return;
+    let closestIdx = 0; let minDiff = Infinity;
+    const gridCenter = grid.getBoundingClientRect().left + grid.offsetWidth / 2;
+    cards.forEach((card, idx) => {
+      const rect = card.getBoundingClientRect();
+      const cardCenter = rect.left + rect.width / 2;
+      const diff = Math.abs(gridCenter - cardCenter);
+      if (diff < minDiff) { minDiff = diff; closestIdx = idx; }
     });
-    toast('Settings saved locally! Remember to export changes ✓');
+    const dots = dotsContainer.querySelectorAll('.dot');
+    dots.forEach((dot, idx) => { if(idx === closestIdx) dot.classList.add('active'); else dot.classList.remove('active'); });
+  });
+
+  function handleCardClick(id) {
+    const p = window.loadedProjectsInstance.find(x => x.id === id);
+    if (!p) return;
+    if (p.github && (!p.imgs || !p.imgs.length)) { window.open(p.github, '_blank'); return; }
+    openPopup(p);
   }
 
-  // ── NEW CORE EXPORT FUNCTION ──
-  function exportPortfolioData() {
-    const packageData = {
-      projects: getData('projects', DEFAULT_PROJECTS),
-      hero: getData('hero', DEFAULT_HERO),
-      settings: getData('settings', DEFAULT_SETTINGS)
-    };
-    
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(packageData, null, 2));
-    const downloadAnchor = document.createElement('a');
-    downloadAnchor.setAttribute("href", dataStr);
-    downloadAnchor.setAttribute("download", "portfolio-data.json");
-    document.body.appendChild(downloadAnchor);
-    downloadAnchor.click();
-    downloadAnchor.remove();
-    toast('Data file exported! Save to your folder & commit.');
+  function openPopup(p) {
+    document.getElementById('popup-meta').textContent = p.date;
+    document.getElementById('popup-title').textContent = p.title;
+    document.getElementById('popup-desc').textContent = p.long || p.short;
+    document.getElementById('popup-tags').innerHTML = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    const ghBtn = document.getElementById('popup-github-btn');
+    if (p.github) { ghBtn.href = p.github; ghBtn.style.display = 'inline-block'; } else { ghBtn.style.display = 'none'; }
+
+    const imgsDiv = document.getElementById('popup-imgs');
+    const imgDotsDiv = document.getElementById('popup-img-dots');
+    const carouselContainer = document.getElementById('popup-carousel-container');
+    const prevArrow = document.getElementById('carousel-arrow-prev');
+    const nextArrow = document.getElementById('carousel-arrow-next');
+
+    if (p.imgs && p.imgs.length) {
+      carouselContainer.style.display = 'block';
+      
+      if (p.imgs.length <= 1) {
+        prevArrow.style.display = 'none';
+        nextArrow.style.display = 'none';
+      } else {
+        prevArrow.style.display = 'flex';
+        nextArrow.style.display = 'flex';
+      }
+
+      imgsDiv.innerHTML = p.imgs.map(img => `
+        <div class="popup-carousel-item">
+          <img src="images/${img}" alt="${p.title}" />
+        </div>
+      `).join('');
+
+      imgDotsDiv.innerHTML = p.imgs.map((_, idx) => `
+        <span class="popup-img-dot ${idx === 0 ? 'active' : ''}"></span>
+      `).join('');
+
+      imgsDiv.scrollLeft = 0;
+      imgsDiv.onscroll = () => {
+        const itemWidth = imgsDiv.clientWidth;
+        if(itemWidth === 0) return;
+        const activeIndex = Math.round(imgsDiv.scrollLeft / itemWidth);
+        const dots = imgDotsDiv.querySelectorAll('.popup-img-dot');
+        dots.forEach((dot, idx) => { if (idx === activeIndex) dot.classList.add('active'); else dot.classList.remove('active'); });
+      };
+    } else {
+      carouselContainer.style.display = 'none';
+      imgsDiv.innerHTML = '';
+      imgDotsDiv.innerHTML = '';
+    }
+
+    document.getElementById('popup-overlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
   }
 
-  // ── TOAST ──
-  function toast(msg) {
-    const t = document.getElementById('toast');
-    t.textContent = msg;
-    t.classList.add('show');
-    setTimeout(() => t.classList.remove('show'), 2500);
+  function moveCarousel(direction) {
+    const imgsDiv = document.getElementById('popup-imgs');
+    const itemWidth = imgsDiv.clientWidth;
+    imgsDiv.scrollBy({ left: direction * itemWidth, behavior: 'smooth' });
   }
+
+  function closePopup(e) { if (e.target === document.getElementById('popup-overlay')) closePopupDirect(); }
+  function closePopupDirect() { document.getElementById('popup-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closePopupDirect(); });
+
+  loadPortfolioEngine();
 </script>
 </body>
 </html>
